@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Game from './components/Game.js';
 import Login from './components/Login.js';
 import About from './components/About.js';
+import CharacterSelect from './components/game_route/CharacterSelectPage.js';
+
 
 
 function App() {
@@ -54,6 +56,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Game}/>
       <Route exact path="/about" component={About} />
+      <Route exact path="/character-select" component={CharacterSelect} />
     </div>
   </Router>
   );

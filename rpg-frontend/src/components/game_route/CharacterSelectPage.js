@@ -7,7 +7,7 @@ const URL = 'http://localhost:3001/characters'
 
 class CharacterSelect extends Component {
   state = {
-    collection: [{id:1, name: "Colton", catchphrase: "Lets train some athletes", health: 100, abilities: [{name: "drink bang"}]}],
+    collection: [],
     characterSpecs: false,
     character: false
   }

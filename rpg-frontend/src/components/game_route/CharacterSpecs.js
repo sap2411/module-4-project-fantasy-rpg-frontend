@@ -24,23 +24,44 @@ const CharacterSpecs = props => {
               "Special Ability"
             </strong> */}
             <br />
+          </div>
+        </div>
+      </div>
             <div className="ui segment">
-              <div className="ui three column centered grid">
-                <div className="row">
-                  <div className="column">
-                    <i className="icon large circular red heartbeat" />
-                    <strong>{props.character.health}</strong>
-                  </div><br/>
-                  </div><div className="row">
+              <div className="ui one column centered grid">
+                
                   <div className="column">
                     <i className="icon large circular yellow lightning" />
-                    <strong>{props.character.abilities[0].name}</strong>
-                  </div><br/></div><div className="row">
-                  <div className="column">
-                    <i className="icon large circular blue shield" />
-                    <strong>Special Ability</strong>
                   </div>
-                </div>
+                  <div className="column">
+                    <strong>Attack: {props.character.abilities[0].name}</strong>
+                  </div>
+                  <div className="column">
+                    <strong>Description: {props.character.abilities[0].description}</strong>
+                  </div><br/>
+                
+                
+                  <div className="column">
+                    <i className="icon large circular red heartbeat" />
+                  </div>
+                  <div className="column">
+                    <strong>Defence: {props.character.abilities[1].name}</strong>
+                  </div>
+                  <div className="column">
+                    <strong>Description: {props.character.abilities[1].description}</strong>
+                  </div><br/>
+              
+                
+                  <div className="column">
+                    <i className="icon large circular blue star" />
+                  </div>
+                  <div className="column">
+                    <strong>Special: {props.character.abilities[2].name}</strong>
+                  </div>
+                  <div className="column">
+                    <strong>Description: {props.character.abilities[2].description}</strong>
+                  </div>
+                
               </div>
             </div>
             <button
@@ -56,9 +77,6 @@ const CharacterSpecs = props => {
               Play Character
             </button>
           </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
