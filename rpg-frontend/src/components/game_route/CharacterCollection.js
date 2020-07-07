@@ -4,7 +4,7 @@ import CharacterCard from './CharacterCard.js';
 class CharacterCollection extends Component {
   renderCollection = () => {
     const {collection, showSpecs} = this.props;
-  return collection.map(character => {return <CharacterCard  character={character} handleDivClick={showSpecs}/>})
+  if (collection) return collection.map(character => {return <CharacterCard  character={character} handleDivClick={showSpecs}/>})
   }
 
   render() {
