@@ -1,4 +1,6 @@
 import React from "react";
+import Colton from '../../assets/boss.png'
+
 
 const CharacterSpecs = props => {
   return (
@@ -9,7 +11,7 @@ const CharacterSpecs = props => {
             <img
               alt="oh no!"
               className="ui medium circular image bordered"
-              src={props.character.image_url}
+              src={props.character.image_url? props.character.image_url : Colton}
             />
           </div>
           <div className="four wide column">
@@ -18,9 +20,9 @@ const CharacterSpecs = props => {
               <strong>Catchphrase: </strong>
               {props.character.catchphrase}
             </p>
-            <strong>
-              Abilities: {props.character.abilities[0]}
-            </strong>
+            {/* <strong>
+              "Special Ability"
+            </strong> */}
             <br />
             <div className="ui segment">
               <div className="ui three column centered grid">
@@ -28,15 +30,16 @@ const CharacterSpecs = props => {
                   <div className="column">
                     <i className="icon large circular red heartbeat" />
                     <strong>{props.character.health}</strong>
-                  </div>
-                  {/* <div className="column">
+                  </div><br/>
+                  </div><div className="row">
+                  <div className="column">
                     <i className="icon large circular yellow lightning" />
-                    <strong>{props.character.abilities}</strong>
-                  </div>
+                    <strong>{props.character.abilities[0].name}</strong>
+                  </div><br/></div><div className="row">
                   <div className="column">
                     <i className="icon large circular blue shield" />
-                    <strong>{props.character.abilities}</strong>
-                  </div> */}
+                    <strong>Special Ability</strong>
+                  </div>
                 </div>
               </div>
             </div>

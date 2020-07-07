@@ -1,25 +1,29 @@
 import React, { Component } from "react";
 import CharacterCollection from './CharacterCollection.js';
 import CharacterSpecs from './CharacterSpecs.js';
+import Colton from '../../assets/boss.png'
 
 const URL = 'http://localhost:3001/characters'
 
 class CharacterSelect extends Component {
   state = {
-    collection: [{id:1, name: "Steven", catchphrase: "hi", image_url: '../../../public/boss.png', health: 100, abilities: ["ability 1", "ability 2"]}],
+    collection: [{id:1, name: "Colton", catchphrase: "Lets train some athletes", health: 100, abilities: [{name: "drink bang"}]}],
     characterSpecs: false,
     character: false
   }
 
   fetchCharacters = () => {
-    // fetch(URL)
-    // .then(resp => resp.json())
-    // .then(characters => {
-    //   this.setState({
-    //     collection: [...characters]
-    //   })
-    // })
-    this.setState({collection: [{id:1, name: "Steven", catchphrase: "hi", image_url: '../../../public/boss.png', health: 100, abilities: ["ability 1", "ability 2"]}]})
+    fetch(URL)
+    .then(resp => resp.json())
+    .then(characters => {
+      let a = []
+      characters.data.forEach(data => a.unshift(data.attributes))
+      console.log(a)
+      this.setState(prevState => {
+        return {collection: [...prevState.collection, ...a]}
+      })
+      console.log(this.state)
+    })
   }
 
   updateCharacterForSpecs = (character=false) => {
@@ -45,6 +49,7 @@ class CharacterSelect extends Component {
   render() {
     return (
     <div>
+      <h1>Choose Your Character</h1>
       {this.toggleView()}
     </div>
     );
