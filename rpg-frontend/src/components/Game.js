@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.css';
 import CharacterSelect from './game_route/CharacterSelectPage.js';
 
 
