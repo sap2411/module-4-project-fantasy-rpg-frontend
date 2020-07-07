@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CharacterCollection from './CharacterCollection.js';
 import CharacterSpecs from './CharacterSpecs.js';
-import Colton from '../../assets/boss.png'
 
 const URL = 'http://localhost:3001/characters'
 
@@ -48,10 +47,12 @@ class CharacterSelect extends Component {
 
   render() {
     return (
-    <div>
-      <h1>Choose Your Character</h1>
-      {this.toggleView()}
-    </div>
+      <div className="row justify-content-md-center">
+        <div className="col-10 text-center">
+          <h1>Choose Your Character</h1>
+          {this.toggleView()}
+        </div>
+      </div>
     );
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar.js';
 import Game from './components/Game.js';

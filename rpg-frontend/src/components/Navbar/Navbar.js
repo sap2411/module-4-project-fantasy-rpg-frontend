@@ -11,41 +11,41 @@ const Navbar = () => {
                 </a>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" title="New Game" href="#">
+                        <NavLink to="/character-select" exact className="nav-link" title="New Game">
                             <i class="fas fa-gamepad"></i>
                             <span class="d-none d-sm-none d-md-inline"> New Game</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" title="Load Game" href="#">
+                        <NavLink to="/" exact className="nav-link" title="Load Game">
                             <i class="fas fa-save"></i>
                             <span class="d-none d-sm-none d-md-inline"> Load Game</span>
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ml-md-auto">
                     <li class="nav-item">
-                        <a class="nav-link" title="Create Account" href="#">
+                        <NavLink to="/" exact className="nav-link" title="Create Account">
                             <i class="fas fa-user-plus"></i>
                             <span class="d-none d-sm-none d-md-inline"> Create Account</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" title="Login" href="#">
+                        <NavLink to="/" exact className="nav-link" title="Login">
                             <i class="fas fa-sign-in-alt"></i>
                             <span class="d-none d-sm-none d-md-inline"> Login</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" title="User Name" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <NavLink to="/" exact className="nav-link dropdown-toggle" title="User Name" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user-circle"></i>
                             <span class="d-none d-sm-none d-md-inline"> User Name</span>
-                        </a>
+                        </NavLink>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><i class="fas fa-address-card"></i> Account</a>
+                            <NavLink to="/" exact className="dropdown-item" ><i class="fas fa-address-card"></i> Account</NavLink>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <NavLink to="/" exact className="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</NavLink>
                         </div>
                     </li>
                 </ul>
