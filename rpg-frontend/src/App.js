@@ -54,7 +54,6 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Game}/>
       <Route exact path="/about" component={About} />
-      <Route exact path="/login" component={Login} />
     </div>
   </Router>
   );
