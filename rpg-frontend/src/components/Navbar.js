@@ -52,7 +52,7 @@ const Navbar = ({user, logOut}) => {
                         <li className="nav-item dropdown">
                             <NavLink exact to="/account" className="nav-link dropdown-toggle" title="User Name" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-user-circle"></i>
-                                <span className="d-none d-sm-none d-md-inline"> User Name</span>
+                                <span className="d-none d-sm-none d-md-inline"> {user.attributes.name}</span>
                             </NavLink>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <NavLink exact to="/account" className="dropdown-item" ><i className="fas fa-address-card"></i> Account</NavLink>

@@ -11,6 +11,7 @@ import LogIn from './components/LogIn.js'
 function App() {
   // Backend URL
   const backendURL = 'http://localhost:3001'
+  const logInURL = backendURL + '/login'
   const usersURL = backendURL + '/users'
   const charactersURL = backendURL + '/characters'
   const abilitiesURL = backendURL + '/abilities'
@@ -39,7 +40,8 @@ function App() {
         {/* <Route exact path="/about" component={About} /> */}
 
         <Route exact path="/create-account" component={() => <CreateAccount usersURL={usersURL} logIn={logIn}/>} />
-        <Route exact path="/Log-in" component={LogIn} />
+        <Route exact path="/Log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />
+        {/* <Route exact path="/Log-in" component={LogIn} /> */}
       </div>
     </Router>
   );
