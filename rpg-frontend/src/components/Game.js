@@ -17,7 +17,6 @@ class Game extends Component{
         .then(resp => resp.json())
         .then(json => {
           const characters = json.data.map(data => data.attributes)
-          console.log(characters)
           this.setState({
             collection: characters.filter(character => character.group === "Playable"),
             bosses: characters.filter(character => character.group === "Boss")
@@ -43,7 +42,6 @@ class Game extends Component{
   render() {
     return (
     <div>
-        <button onClick={() => console.log(this.state)}> </button>
         {this.state.player ? <Fight player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
     </div>
     );
