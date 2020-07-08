@@ -17,8 +17,9 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Game}/>
       <Route exact path="/about" component={About} />
-      <Route exact path="/createAccount" component={CreateAccount} />
+      <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/character-select" component={CharacterSelect} />
+      {/* <Route exact path="/load-game" component={load game ...} /> */}
     </div>
   </Router>
   );
