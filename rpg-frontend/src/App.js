@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar.js';
+import Navbar from './components/Navbar/Navbar.js';
 import Game from './components/Game.js';
 import About from './components/About.js';
 import CreateAccount from './components/CreateAccount';
