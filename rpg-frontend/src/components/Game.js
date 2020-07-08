@@ -36,7 +36,6 @@ class Game extends Component{
         character: char,
         opponent: o
     });
-    console.log(this.state)
   }
     
   render() {
