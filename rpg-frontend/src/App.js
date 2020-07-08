@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Game from './components/Game.js';
-import Login from './components/Login.js';
 import About from './components/About.js';
+import CreateAccount from './components/CreateAccount';
 
 
 function App() {
@@ -21,11 +21,8 @@ function App() {
   const Navbar = () => {return <div>
       <NavLink
         to="/"
-        /* set exact so it knows to only set activeStyle when route is deeply equal to link */
         exact
-        /* add styling to Navlink */
         style={link}
-        /* add prop for activeStyle */
         activeStyle={{
           background: 'darkblue'
         }}
@@ -39,13 +36,13 @@ function App() {
         }}
       >About</NavLink>
       <NavLink
-        to="/login"
+        to="/createAccount"
         exact
         style={link}
         activeStyle={{
           background: 'darkblue'
         }}
-      >Login</NavLink>
+      >Create Account</NavLink>
     </div>; }
 
   return (
@@ -54,7 +51,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Game}/>
       <Route exact path="/about" component={About} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/createAccount" component={CreateAccount} />
     </div>
   </Router>
   );
