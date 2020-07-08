@@ -4,12 +4,12 @@ import CharacterCard from './CharacterCard.js';
 class CharacterCollection extends Component {
   renderCollection = () => {
     const {collection, showSpecs} = this.props;
-  if (collection) return collection.map(character => {return <CharacterCard  character={character} handleDivClick={showSpecs}/>})
+  if (collection) return collection.map(character => {return <CharacterCard  character={character} healthLeft={character.health} handleDivClick={showSpecs}/>})
   }
 
   render() {
     return (
-      <div className="ui four column grid">
+      <div className="ui four column centered grid">
         <div className="row">
           {this.renderCollection()}
         </div>
