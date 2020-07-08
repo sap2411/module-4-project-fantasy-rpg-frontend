@@ -3,6 +3,7 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
+import ReactAnimations from './ReactAnimations.js';
 
 
 class Fight extends Component {
