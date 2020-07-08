@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 
 class CreateAccount extends Component {
 
@@ -29,9 +30,13 @@ class CreateAccount extends Component {
     fetch(this.props.usersURL, options).then(resp => resp.json())
     .then(json => {
       if (json.data) {
+        // Clear error messages
         this.setState({fetchMessages: ''})
-        // Need to log in user and redirect to somewhere
+        // Fake login
+        this.props.logIn(json.data)
+        // return <Redirect to="/new-game"/>
       } else {
+        // Set error messages
         this.setState({fetchMessages: json})
       }
     })
