@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import CharacterSelect from './game_route/CharacterSelectPage.js';
 import Fight from './game_route/Fight.js';
 const URL = 'http://localhost:3001/characters'
@@ -42,11 +41,8 @@ class Game extends Component{
     
   render() {
     return (
-    <div >
-      <header ><br></br>
-        <h1>Flatiron Fighter</h1>
+    <div>
         {this.state.character ? <Fight player={this.state.character} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
-      </header>
     </div>
     );
   }
