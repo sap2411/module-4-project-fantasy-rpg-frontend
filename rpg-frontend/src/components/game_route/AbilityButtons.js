@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const AbilityButtons = (props) => {
 
@@ -9,12 +9,12 @@ const AbilityButtons = (props) => {
     const mapButtons = () => {
         return props.abilities.map(ability => {
             return (
-                <button type="button" className="btn btn-warning m-2" key={ability.id} value={ability.id} onClick={event => handleClick(event)}>
+                <button type="button" className="btn btn-primary m-2" key={ability.id} value={ability.id} disabled={props.aggressor !== "player"} onClick={event => handleClick(event)}>
                     <ul className="list-inline">
                         <li>{ability.name}</li>
-                        <li className="list-inline-item"><i className="fas fa-fist-raised text-success"></i> {ability.damage_effect} </li>
+                        <li className="list-inline-item"><i className="fas fa-fist-raised text-warning"></i> {ability.damage_effect} </li>
                         <li className="list-inline-item"><i className="fas fa-heart text-danger"></i> {ability.healing_effect} </li>
-                        <li className="list-inline-item"><i className="fas fa-sync-alt text-secondary"></i> {ability.cooldown} </li>
+                        <li className="list-inline-item"><i className="fas fa-sync-alt text-success"></i> {ability.cooldown} </li>
                         <li>{ability.group}</li>
                     </ul>
                 </button>
