@@ -39,7 +39,7 @@ class CreateAccount extends Component {
 
   render () {
     return (
-      <form className="card col-3 my-5 mx-auto p-3" onSubmit={event => this.handleSubmit(event)}>
+      <form className="card col-3 my-5 mx-auto p-3 rounded-lg" onSubmit={event => this.handleSubmit(event)}>
         <div className="form-group col-sm d-flex justify-content-center">
           <h3>Create Account</h3>
         </div>

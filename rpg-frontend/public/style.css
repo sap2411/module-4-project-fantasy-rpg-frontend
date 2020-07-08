@@ -4,8 +4,9 @@ body{
   background:#00b3e6;
   background: linear-gradient(#00b3e6);
   font-family: "work sans";
-  background-image: url('/Flatiron_Fighter_background.jpeg');
-  background-size: cover;
+  background-image: url('Flatiron_Fighter_background.jpeg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 }
 
 html{
