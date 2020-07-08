@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
-import About from './components/About.js';
+// import About from './components/About.js';
 import CreateAccount from './components/CreateAccount.js';
 import LogIn from './components/LogIn.js'
-import CharacterSelect from './components/game_route/CharacterSelectPage.js';
+// import CharacterSelect from './components/game_route/CharacterSelectPage.js';
 
 
 
