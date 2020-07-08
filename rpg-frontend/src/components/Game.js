@@ -28,9 +28,9 @@ class Game extends Component{
     }
 
   chooseCharacter = (char) => {
-    let all = this.state.collection.filter(i => i != char)
+    let all = this.state.collection.filter(i => i !== char)
     let o = all[Math.floor(Math.random() * all.length)];
-    all = this.state.collection.filter(i => i != o)
+    all = this.state.collection.filter(i => i !== o)
     this.setState({
         collection: [...all],
         character: char,
