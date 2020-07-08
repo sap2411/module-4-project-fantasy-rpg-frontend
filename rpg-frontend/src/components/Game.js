@@ -7,18 +7,20 @@ const URL = 'http://localhost:3001/characters'
 class Game extends Component{
     state = {
         collection: [],
-        character: null,
+        bosses: [],
+        player: null,
         opponent: null
     }
 
     fetchCharacters = () => {
         fetch(URL)
         .then(resp => resp.json())
-        .then(characters => {
-          let a = []
-          characters.data.forEach(data => a.unshift(data.attributes))
-          this.setState(prevState => {
-            return {collection: [...prevState.collection, ...a]}
+        .then(json => {
+          const characters = json.data.map(data => data.attributes)
+          console.log(characters)
+          this.setState({
+            collection: characters.filter(character => character.group === "Playable"),
+            bosses: characters.filter(character => character.group === "Boss")
           })
         })
     }
@@ -33,7 +35,7 @@ class Game extends Component{
     all = this.state.collection.filter(i => i !== o)
     this.setState({
         collection: [...all],
-        character: char,
+        player: char,
         opponent: o
     });
   }
@@ -41,7 +43,8 @@ class Game extends Component{
   render() {
     return (
     <div>
-        {this.state.character ? <Fight player={this.state.character} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
+        <button onClick={() => console.log(this.state)}> </button>
+        {this.state.player ? <Fight player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
     </div>
     );
   }
