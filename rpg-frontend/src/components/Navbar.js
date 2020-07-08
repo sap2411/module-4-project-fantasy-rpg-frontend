@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -32,7 +32,7 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li class="nav-item">
-                        <NavLink exact to="/login" className="nav-link" title="Login">
+                        <NavLink exact to="/log-in" className="nav-link" title="Login">
                             <i class="fas fa-sign-in-alt"></i>
                             <span class="d-none d-sm-none d-md-inline"> Login</span>
                         </NavLink>
@@ -45,7 +45,7 @@ const Navbar = () => {
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <NavLink exact to="/account" className="dropdown-item" ><i class="fas fa-address-card"></i> Account</NavLink>
                             <div class="dropdown-divider"></div>
-                            <NavLink exact to="/logout" className="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</NavLink>
+                            <NavLink exact to="/log-out" className="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</NavLink>
                         </div>
                     </li>
                 </ul>
