@@ -9,6 +9,7 @@ const CharacterCard = props => {
       <div className="card-body">
         <h3 className="card-title">{props.character.name}</h3>
         <p className="card-title">{props.character.catchphrase}</p>
+        <p><i className="icon large circular red heart" /> {props.healthLeft}/{props.character.health}</p>
       </div>
     </div>
   );
