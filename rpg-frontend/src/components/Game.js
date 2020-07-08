@@ -8,7 +8,8 @@ class Game extends Component{
     state = {
         collection: [],
         character: null,
-        opponent: null
+        opponent: null,
+        round: 1
     }
 
     fetchCharacters = () => {
@@ -37,11 +38,25 @@ class Game extends Component{
         opponent: o
     });
   }
+
+  loseGame = () => {
+   //when player health <= 0, redirect to game over
+  }
+
+  advanceRound = () => {
+    //triggered by opponent health <= 0
+    if (this.state.round < 3){
+        let next = this.state.round + 1
+        this.setState({round: next})
+    }else{
+    //redirect to Win
+    }
+  }
     
   render() {
     return (
     <div>
-        {this.state.character ? <Fight player={this.state.character} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
+        {this.state.character ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} player={this.state.character} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
     </div>
     );
   }
