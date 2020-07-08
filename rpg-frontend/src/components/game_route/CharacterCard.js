@@ -4,7 +4,7 @@ import Colton from '../../assets/boss.png'
 
 const CharacterCard = props => {
   return (
-    <div className="card m-4" style={{width: "20rem"}} key={props.character.id} onClick={() => {props.handleDivClick(props.character)}}>
+    <div className="card m-4 p" style={{width: "20rem"}} key={props.character.id} onClick={() => {props.handleDivClick(props.character)}}>
       <img className="card-img-top" alt="oh no!" src={props.character.image_url? props.character.image_url : Colton} />
       <div className="card-body">
         <h3 className="card-title">{props.character.name}</h3>
