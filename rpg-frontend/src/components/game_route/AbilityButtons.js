@@ -9,7 +9,7 @@ const AbilityButtons = (props) => {
     const mapButtons = () => {
         return props.abilities.map(ability => {
             return (
-                <button type="button" className="btn btn-primary m-2" key={ability.id} value={ability.id} disabled={props.aggressor !== "player"} onClick={event => handleClick(event)}>
+                <button type="button" className="btn btn-primary m-2 p" key={ability.id} value={ability.id} disabled={props.aggressor !== "player"} onClick={event => handleClick(event)}>
                     <ul className="list-inline">
                         <li>{ability.name}</li>
                         <li className="list-inline-item"><i className="fas fa-fist-raised text-warning"></i> {ability.damage_effect} </li>

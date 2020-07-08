@@ -3,6 +3,7 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
+import ReactAnimations from './ReactAnimations.js';
 
 
 class Fight extends Component {
@@ -57,7 +58,7 @@ class Fight extends Component {
   render() {
     return (
     <div>
-      <h1 className='col text-center'>Mod 1</h1>
+      <h1 className='col text-center'>Mod {this.props.round}</h1>
       <div className='ui two column centered grid'>
         {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
         <h3>VS</h3>

@@ -7,6 +7,7 @@ const URL = 'http://localhost:3001/characters'
 class Game extends Component{
     state = {
         collection: [],
+        round: 1,
         bosses: [],
         player: null,
         opponent: null
@@ -38,11 +39,25 @@ class Game extends Component{
         opponent: o
     });
   }
+
+  loseGame = () => {
+   //when player health <= 0, redirect to game over
+  }
+
+  advanceRound = () => {
+    //triggered by opponent health <= 0
+    if (this.state.round < 3){
+        let next = this.state.round + 1
+        this.setState({round: next})
+    }else{
+    //redirect to Win
+    }
+  }
     
   render() {
     return (
     <div>
-        {this.state.player ? <Fight player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
+        {this.state.player ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
     </div>
     );
   }

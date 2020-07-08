@@ -58,7 +58,7 @@ class CreateAccount extends Component {
           <input type="email" className="form-control" placeholder="Email Address" name="email" value={this.state.email} onChange={event => this.handleChange(event)}/>
         </div>
         <div className="form-group col-sm d-flex justify-content-center">
-          <button type="submit" className="btn btn-success">
+          <button type="submit" className="btn btn-success p">
             <i className="fas fa-user-plus"></i>
             <span className="d-none d-sm-none d-md-inline"> Create Account</span>
           </button>
