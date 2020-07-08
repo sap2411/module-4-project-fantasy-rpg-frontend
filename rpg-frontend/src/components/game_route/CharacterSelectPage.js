@@ -47,8 +47,8 @@ class CharacterSelect extends Component {
 
   render() {
     return (
-      <div className="row justify-content-md-center">
-        <div className="col-10 text-center">
+      <div className="row justify-content-md-center m-4">
+        <div className="col text-center">
           <h1>Choose Your Character</h1>
           {this.toggleView()}
         </div>
