@@ -4,14 +4,16 @@ body{
   background:#00b3e6;
   background: linear-gradient(#00b3e6);
   font-family: "work sans";
-  background-image: url("img/WhatsApp Image 2020-07-07 at 13.27.11.jpeg");
-  background-size: cover;
+  background-image: url('Flatiron_Fighter_background.jpeg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 }
 
 html{
   font-size: 100%;
 }
 
+/* Custom CSS for Login Form */
 #loginform{
   max-width: 500px;
   min-width: 300px;
@@ -115,7 +117,3 @@ html{
    padding-top: 2rem;
    margin-top: 1.5rem;
 }
-
-
-
-
