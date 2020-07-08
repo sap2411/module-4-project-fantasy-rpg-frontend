@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
@@ -6,15 +7,24 @@ import BattleLog from './BattleLog.js';
 
 class Fight extends Component {
   
-  constructor(props){
-    super(props)
-    this.state = {
-        playerBack: false,
-        opponentBack: false,
-        log: [`${this.props.player.name} used ${this.props.player.abilities[0].name} and damaged ${this.props.opponent.name} for 25 Health`],
-        players_health: this.props.player.health,
-        opponents_health: this.props.opponent.health
-    }
+  state = {
+      playerBack: false,
+      opponentBack: false,
+      players_health: this.props.player.health,
+      opponents_health: this.props.opponent.health,
+      log: ["Fight!"]
+  }
+
+  playerAttack = (abilityID) => {
+    const ability = this.props.player.abilities.find(ability => ability.id === parseInt(abilityID))
+    this.setState(prevState => ({
+      players_health: prevState.players_health + ability.healing_effect,
+      opponents_health: prevState.opponents_health - ability.damage_effect,
+      log: [...this.state.log,`${this.props.player.name} used ${ability.name} to ${ability.descrription}`]
+    }))
+  }
+
+  opponentAttack = () => {
   }
 
   onPlayerClick = (arg=false) => {
@@ -35,12 +45,8 @@ class Fight extends Component {
         {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
       </div>
       <div className='ui two column centered grid'>
-          <div className='buttons'>
-            <button><i className="icon large circular yellow lightning" /></button>
-            <button><i className="icon large circular red heartbeat" /></button>
-            <button><i className="icon large circular blue star" /></button>
-          </div>
-          <BattleLog log={this.state.log}/>
+        <AbilityButtons abilities={this.props.player.abilities} playerAttack={this.playerAttack}/>
+        <BattleLog log={this.state.log}/>
       </div>
 
     </div>
