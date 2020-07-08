@@ -23,7 +23,7 @@ class Fight extends Component {
     this.setState(prevState => ({
       players_health: prevState.players_health + ability.healing_effect,
       opponents_health: prevState.opponents_health - ability.damage_effect,
-      log: [`${this.props.player.name} used ${ability.name} to ${ability.description} (Damge: ${ability.damage_effect}, Heal: ${ability.healing_effect})`, ...prevState.log],
+      log: [`${this.props.player.name} used ${ability.name} to ${ability.description}. (Damge: ${ability.damage_effect}, Heal: ${ability.healing_effect})`, ...prevState.log],
       aggressor: "opponent"
     }))
     // Call opponent to attack after a short timeout
@@ -37,7 +37,7 @@ class Fight extends Component {
     this.setState(prevState => ({
       players_health: prevState.players_health - ability.damage_effect,
       opponents_health: prevState.opponents_health + ability.healing_effect,
-      log: [`${this.props.opponent.name} used ${ability.name} to ${ability.description} (Damge: ${ability.damage_effect}, Heal: ${ability.healing_effect})`, ...prevState.log],
+      log: [`${this.props.opponent.name} used ${ability.name} to ${ability.description}. (Damge: ${ability.damage_effect}, Heal: ${ability.healing_effect})`, ...prevState.log],
       aggressor: "player"
     }))
   }
