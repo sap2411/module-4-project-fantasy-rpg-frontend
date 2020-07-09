@@ -21,7 +21,7 @@ const GameOverAnimation = (props) => {
   return(
       <BouncyDiv>
         <div className="ui segment">
-        <img className="card-img-top" alt="oh no!" src='https://previews.123rf.com/images/pockygallery/pockygallery1508/pockygallery150800259/43417431-you-lose-red-stamp-text-on-white.jpg'  />
+        <img className="card-img-top" alt="oh no!" src='https://static.miraheze.org/crappygameswiki/5/52/Game_Over.jpg' />
         <button onClick={() => props.handleClick()}>REMATCH</button>
         </div>
       </BouncyDiv>
@@ -32,13 +32,15 @@ const VictoryAnimation = (props) => {
 
     
   return(
+    <div>
       <BouncyDiv >
         <div  className="ui segment">
-        <img className="card-img-top" alt="oh no!" src='https://www.verrado.com/wp-content/uploads/2013/11/grid-title-victory.jpg' />
+        <img  className="card-img-top" alt="oh no!" src='https://www.verrado.com/wp-content/uploads/2013/11/grid-title-victory.jpg' />
         <button onClick={() => props.handleClick()}>NEXT MOD</button>
         </div>
-      </BouncyDiv>
-      );
+      </BouncyDiv><br/>
+      </div>
+    );
   
 }
 

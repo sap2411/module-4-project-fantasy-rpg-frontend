@@ -19,6 +19,7 @@ class Fight extends Component {
 
   playerAttack = (abilityID) => {
     // Pull selected ability
+    if (this.state.players_health > 0){
     const ability = this.props.player.abilities.find(ability => ability.id === parseInt(abilityID))
     // update fight state
     this.setState(prevState => ({
@@ -30,9 +31,11 @@ class Fight extends Component {
     // Call opponent to attack after a short timeout
     setTimeout(this.opponentAttack, 500)
   }
+  }
 
   opponentAttack = () => {
     // Grab a random ability from the available 3
+    if (this.state.opponents_health > 0){
     const ability = this.props.opponent.abilities[Math.floor(Math.random()*3)]
     // Update fight state
     this.setState(prevState => ({
@@ -41,6 +44,7 @@ class Fight extends Component {
       log: [this.props.opponent.name + this.abilityLogMessage(ability), ...prevState.log],
       aggressor: "player"
     }))
+    }
   }
 
   abilityLogMessage = (ability) => {
@@ -58,8 +62,15 @@ class Fight extends Component {
   whoWon = () => {
     if (this.state.players_health === 0) return (<GameOverAnimation handleClick={this.handleRematch}/>);
     if (this.state.opponents_health === 0) return (<VictoryAnimation handleClick={this.handleVictory}/>);
-    return (<h3>VS</h3>)
+    return (
+      <div className='ui two column centered grid'>
+        {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
+        <h3>VS</h3>
+        {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
+      </div>
+    )
   }
+
 
   handleVictory = () => {
     // this.setState({
@@ -71,6 +82,7 @@ class Fight extends Component {
     //   aggressor: "player"
     // })
     //healt is not resetting into the next round, not sure how to fix it
+    this.handleRematch()
     this.props.advanceRound()
   }
 
@@ -88,12 +100,8 @@ class Fight extends Component {
   render() {
     return (
     <div>
-      <h1 className='col text-center'>Mod {this.props.round}</h1>
-      <div className='ui two column centered grid'>
-        {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
-        {this.whoWon()}
-        {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
-      </div>
+      <h1 className='col text-center'>MOD {this.props.round}</h1>
+      {this.whoWon()}
       <div className='ui two column centered grid'>
         <AbilityButtons abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>
         <BattleLog log={this.state.log}/>
