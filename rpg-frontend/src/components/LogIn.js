@@ -5,7 +5,8 @@ class LogIn extends Component {
 
   state = {
     email: '',
-    fetchMessages: ''
+    fetchMessages: '',
+    redirect: null
   }
 
   handleSubmit = event => {
@@ -26,21 +27,27 @@ class LogIn extends Component {
       body: JSON.stringify(user)
     }
     fetch(this.props.logInURL, options).then(resp => resp.json())
-    .then(json => {
-      if (json.data) {
-        // Clear error messages
-        this.setState({fetchMessages: ''})
-        // Fake login
-        this.props.logIn(json.data)
-        // return <Redirect to="/new-game"/>
+    .then(this.handleFetchResponse)
+  }
+
+  handleFetchResponse = response => {
+      if (response.errors) {
+          // Set error messages
+          this.setState({fetchMessages: response.errors})
       } else {
-        // Set error messages
-        this.setState({fetchMessages: json})
+          // Redirect via state update
+          this.setState({redirect: '/new-game'})
+          // Fake log in user
+          this.props.logIn(response.data)
       }
-    })
   }
 
   render () {
+    // Redirect function used after form submit
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+    }
+
     return (
       <form className="card col-3 my-5 mx-auto p-3 rounded-lg" onSubmit={event => this.handleSubmit(event)}>
         <div className="form-group col-sm d-flex justify-content-center">
@@ -50,7 +57,7 @@ class LogIn extends Component {
           <input type="email" className="form-control" placeholder="Email Address" name="email" value={this.state.email} onChange={event => this.handleChange(event)}/>
         </div>
         <div className="form-group col-sm d-flex justify-content-center">
-          <button type="submit" className="btn btn-success">
+          <button type="submit" className="btn btn-block btn-success">
             <i className="fas fa-sign-in-alt"></i>
             <span className="d-none d-sm-none d-md-inline"> Log In</span>
           </button>
