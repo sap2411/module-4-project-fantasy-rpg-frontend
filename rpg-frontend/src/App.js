@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
 // import About from './components/About.js';
-import CreateAccount from './components/CreateAccount.js';
 import LogIn from './components/LogIn.js'
+import AccountForm from './components/AccountForm.js'
 
 
 
@@ -39,9 +39,9 @@ function App() {
         {/* <Route exact path="/load-game" component={load game ...} /> */}
         {/* <Route exact path="/about" component={About} /> */}
 
-        <Route exact path="/create-account" component={() => <CreateAccount usersURL={usersURL} logIn={logIn}/>} />
-        <Route exact path="/Log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />
-        {/* <Route exact path="/Log-in" component={LogIn} /> */}
+        <Route exact path="/log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />
+        <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn}/>} />
+        <Route exact path="/edit-account" component={() => <AccountForm user={user} logIn={logIn} logOut={logOut} usersURL={usersURL} />} />
       </div>
     </Router>
   );

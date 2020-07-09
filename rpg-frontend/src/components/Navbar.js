@@ -55,7 +55,7 @@ const Navbar = ({user, logOut}) => {
                                 <span className="d-none d-sm-none d-md-inline p"> {user.attributes.name}</span>
                             </NavLink>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <NavLink exact to="/account" className="dropdown-item" ><i className="fas fa-address-card p"></i> Account</NavLink>
+                                <NavLink exact to="/edit-account" className="dropdown-item" ><i className="fas fa-user-edit"></i> Edit Account</NavLink>
                                 <div className="dropdown-divider"></div>
                                 <NavLink exact to="/log-out" className="dropdown-item p" onClick={logOut}><i className="fas fa-sign-out-alt"></i> Logout</NavLink>
                             </div>
