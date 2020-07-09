@@ -32,7 +32,7 @@ const GameSaveCard = ({game_save, character, opponent}) => {
                     <i className="fas fa-trash-alt"></i>
                     <span className="d-none d-sm-none d-md-inline"> Delete Game</span>
                 </button>
-                <button className="btn btn-success m-2" type="button" value={game_save.id} onClick={(event) => handleDeleteClick(event.target.value)}>
+                <button className="btn btn-success m-2" type="button" value={game_save.id} onClick={(event) => handleLoadClick(event.target.value)}>
                     <i class="fas fa-gamepad"></i>
                     <span className="d-none d-sm-none d-md-inline"> Load Game</span>
                 </button>

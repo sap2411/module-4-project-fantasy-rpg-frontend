@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
-import LoadGames from './components/game_saves/GameSavesContainer.js'
+import GameSaves from './components/game_saves/GameSavesContainer.js'
 // import About from './components/About.js';
 import LogIn from './components/LogIn.js'
 import AccountForm from './components/AccountForm.js'
@@ -93,7 +93,7 @@ function App() {
       <div>
         <Navbar user={user} logOut={logOut}/>
         <Route exact path="/new-game" component={() => <Game characters={characters} />} />
-        <Route exact path="/load-game" component={() => <LoadGames game_saves={user.attributes.game_saves} characters={characters}/>} />
+        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters}/>} />
         {/* <Route exact path="/about" component={About} /> */}
 
         <Route exact path="/log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />

@@ -19,9 +19,9 @@ const Navbar = ({user, logOut}) => {
                     {/* Conditionally render based on user prop*/}
                     { user &&
                         <li className="nav-item">
-                            <NavLink exact to="/load-game" className="nav-link" title="Load Game">
+                            <NavLink exact to="/saved-games" className="nav-link" title="Saved Games">
                                 <i className="fas fa-save"></i>
-                                <span className="d-none d-sm-none d-md-inline p"> Load Game</span>
+                                <span className="d-none d-sm-none d-md-inline p"> Saved Games</span>
                             </NavLink>
                         </li>
                     }
