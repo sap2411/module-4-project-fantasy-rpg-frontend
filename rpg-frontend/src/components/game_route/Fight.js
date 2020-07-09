@@ -100,7 +100,7 @@ class Fight extends Component {
   render() {
     return (
     <div>
-      <h1 className='col text-center'>MOD {this.props.round}</h1>
+      {this.state.round == 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
       {this.whoWon()}
       <div className='ui two column centered grid'>
         <AbilityButtons abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>

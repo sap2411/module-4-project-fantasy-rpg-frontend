@@ -3,20 +3,28 @@ import CharacterSelect from './game_route/CharacterSelectPage.js';
 import Fight from './game_route/Fight.js';
 import Victory from './game_route/Victory.js';
 
+const saveUrl = 'http://localhost:3001/game_saves'
+
 class Game extends Component{
-    state = {
-        collection: [],
-        round: 4,
-        bosses: [],
-        player: null,
-        opponent: null,
-        beatGame: false
+    
+  constructor(props){
+    super(props)
+    this.state = {
+      collection: [],
+      round: 1,
+      bosses: [],
+      player: null,
+      opponent: null,
+      beatGame: false,
+      gameSave_id: null
     }
+  }
 
   fetchCharacters = () => {
       fetch(this.props.charactersURL)
       .then(resp => resp.json())
       .then(json => {
+        console.log(json)
         const characters = json.data.map(data => data.attributes)
         this.setState({
           collection: characters.filter(character => character.group === "Playable"),
@@ -38,8 +46,51 @@ class Game extends Component{
         player: char,
         opponent: o
     });
+    if (!!this.props.user) this.createSave(char, o)
   }
 
+  createSave = (player, opponent) => {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        game_saves: {
+        user_id: this.props.user.id,
+        character_id: player.id,
+        opponent_id: opponent.id,
+        current_round: this.state.round 
+        }
+      })
+    }
+    fetch(saveUrl, options)
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState({
+        gameSave_id: json.data.id
+      })
+    }
+    )
+  }
+
+  updateSave = (opponent, round) => {
+    const options = {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        game_saves: {
+        opponent_id: opponent.id,
+        current_round: round
+      }
+    })
+    }
+    fetch(saveUrl+'/'+this.state.gameSave_id, options)
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState({
+        gameSave_id: json.data.id
+      })
+    })
+  }
 
   loseGame = () => {
    //when player health <= 0, redirect to game over
@@ -56,13 +107,15 @@ class Game extends Component{
         collection: [...all],
         opponent: o
       })
-        
+      if (this.props.user) this.updateSave(o,next)
     }else if (this.state.round == 4){
-      let final = '5 - INSTRUCTOR FIGHT'
+      let final = 5
+      let boss = this.state.bosses[Math.floor(Math.random() * this.state.bosses.length)]
       this.setState({
         round: final,
-        opponent: this.state.bosses[Math.floor(Math.random() * this.state.bosses.length)]
+        opponent: boss
       })
+      if (this.props.user) this.updateSave(boss,final)
     }else{
       this.setState({
         beatGame: true
