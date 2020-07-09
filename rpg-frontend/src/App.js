@@ -7,8 +7,6 @@ import GameSaves from './components/game_saves/GameSavesContainer.js'
 import LogIn from './components/LogIn.js'
 import AccountForm from './components/AccountForm.js'
 
-
-
 function App() {
   // Backend URL
   const backendURL = 'http://localhost:3001'
