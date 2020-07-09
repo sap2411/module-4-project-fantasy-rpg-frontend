@@ -83,7 +83,7 @@ class AccountForm extends Component {
         }
 
         return (
-            <div className="card col-4 my-5 mx-auto px-0 rounded-lg text-center">
+            <div className="card col-3 my-5 mx-auto px-0 rounded-lg text-center">
                 <form className="card-body" onSubmit={event => this.handleSubmit(event)}>
                     <div className="form-group col-sm">
                         <h3>{this.props.user ? 'Edit' : 'Create'} Account</h3>
