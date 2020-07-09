@@ -1,25 +1,38 @@
 import React from 'react'
 import GameSaveCard from './GameSaveCard.js'
+import {Link} from 'react-router-dom';
 
 
-const GameSaveContainer = ({game_saves, character_names, character_image_urls}) => {
+const GameSaveContainer = ({game_saves, characters}) => {
+
+    const deleteGameSave = () => {
+
+    }
 
     const gameSaveCards = () => {
-        return game_saves.map((game_save,index) => {
+        return game_saves.map(game_save => {
             return ( <GameSaveCard
                 key={game_save.id}
                 game_save={game_save}
-                character_name={character_names[index]}
-                character_image_url={character_image_urls[index]}
+                character={characters.find(character => parseInt(character.id) === game_save.character_id)}
+                opponent={characters.find(character => parseInt(character.id) === game_save.opponent_id)}
                 />
             )
         })
     }
 
     return (
-        <div className="container my-5 mx-auto p-2">
-            <div className="row row-cols-4 d-flex justify-content-center">
+        <div className="container my-5 mx-auto">
+            <div className="row row-col-3 justify-content-center">
+                
                 {gameSaveCards()}
+
+                <Link exact to="/new-game" title="New Game">
+                    <button className="btn btn-light btn-lg m-2" type="button">
+                        <i class="fas fa-gamepad"></i>
+                        <span className="d-none d-sm-none d-md-inline"> New Game</span>
+                    </button>
+                </Link>
             </div>
         </div>
     )
