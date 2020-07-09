@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import CharacterSelect from './game_route/CharacterSelectPage.js';
 import Fight from './game_route/Fight.js';
+import Victory from './game_route/Victory.js';
 
 class Game extends Component{
     state = {
         collection: [],
-        round: 1,
+        round: 4,
         bosses: [],
         player: null,
-        opponent: null
+        opponent: null,
+        beatGame: false
     }
 
   fetchCharacters = () => {
@@ -45,7 +47,7 @@ class Game extends Component{
 
   advanceRound = () => {
     //triggered by opponent health <= 0
-    if (this.state.round < 3){
+    if (this.state.round < 4){
       let o = this.state.collection[Math.floor(Math.random() * this.state.collection.length)];
       let all = this.state.collection.filter(i => i !== o)
       let next = this.state.round + 1
@@ -55,15 +57,27 @@ class Game extends Component{
         opponent: o
       })
         
+    }else if (this.state.round == 4){
+      let final = '5 - INSTRUCTOR FIGHT'
+      this.setState({
+        round: final,
+        opponent: this.state.bosses[Math.floor(Math.random() * this.state.bosses.length)]
+      })
     }else{
-    //redirect to Win
+      this.setState({
+        beatGame: true
+      })
     }
+  }
+
+  startGame = () => {
+    return this.state.player ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />
   }
     
   render() {
     return (
     <div>
-        {this.state.player ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />}
+      {this.state.beatGame ? <Victory /> : this.startGame()}
     </div>
     );
   }

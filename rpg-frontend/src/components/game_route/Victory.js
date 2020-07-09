@@ -5,7 +5,7 @@ const Victory = () => {
 
  return (
      <div>
-         <h1>You Won!</h1>
+         <h1>You Beat The Game!</h1>
      </div>
 
  )
