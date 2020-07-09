@@ -83,46 +83,56 @@ class AccountForm extends Component {
         }
 
         return (
-            <form className="card col-3 my-5 mx-auto p-3 rounded-lg" onSubmit={event => this.handleSubmit(event)}>
-                <div className="form-group col-sm d-flex justify-content-center">
-                    <h3>{this.props.user ? 'Edit' : 'Create'} Account</h3>
-                </div>
-                <div className="form-group col-sm">
-                    <input type="text" className="form-control" placeholder="First Name" name="first_name" value={this.state.first_name} onChange={event => this.handleChange(event)}/>
-                </div>
-                <div className="form-group col-sm">
-                    <input type="text" className="form-control" placeholder="Last Name" name="last_name" value={this.state.last_name} onChange={event => this.handleChange(event)}/>
-                </div>
-                <div className="form-group col-sm">
-                    <input type="email" className="form-control" placeholder="Email Address" name="email" value={this.state.email} onChange={event => this.handleChange(event)}/>
-                </div>
+            <div className="card col-4 my-5 mx-auto px-0 rounded-lg text-center">
+                <form className="card-body" onSubmit={event => this.handleSubmit(event)}>
+                    <div className="form-group col-sm">
+                        <h3>{this.props.user ? 'Edit' : 'Create'} Account</h3>
+                    </div>
+                    <div className="form-group col-sm">
+                        <input type="text" className="form-control" placeholder="First Name" name="first_name" value={this.state.first_name} onChange={event => this.handleChange(event)}/>
+                    </div>
+                    <div className="form-group col-sm">
+                        <input type="text" className="form-control" placeholder="Last Name" name="last_name" value={this.state.last_name} onChange={event => this.handleChange(event)}/>
+                    </div>
+                    <div className="form-group col-sm">
+                        <input type="email" className="form-control" placeholder="Email Address" name="email" value={this.state.email} onChange={event => this.handleChange(event)}/>
+                    </div>
+
+                    {/* Conditionally render via && operator acting as if statement */}
+                    { this.props.user &&
+                        <div className="form-group col-sm">
+                            <button type="button" className="btn btn-block btn-danger" onClick={this.handleDeleteClick}>
+                                <i className="fas fa-trash-alt"></i>
+                                <span className="d-none d-sm-none d-md-inline"> Delete Account</span>
+                            </button>
+                        </div>
+                    }
+
+                    <div className="col-sm">
+                        <button type="submit" className="btn btn-block btn-success p">
+                            {this.props.user ? <i className="fas fa-user-edit"></i> : <i className="fas fa-user-plus"></i>}
+                            <span className="d-none d-sm-none d-md-inline"> {this.props.user ? 'Edit' : 'Create'} Account</span>
+                        </button>
+                    </div>
+        
+                    {/* Conditionally render via && operator acting as if statement */}
+                    {this.state.fetchMessages &&
+                        <div className="d-flex justify-content-center">
+                            <ul className="list-unstyled text-danger">
+                                {this.state.fetchMessages.map((message, index) => <li key={index}>{message}</li>)}
+                            </ul>
+                        </div>
+                    }
+                </form>
 
                 {/* Conditionally render via && operator acting as if statement */}
                 { this.props.user &&
-                    <div className="form-group col-sm d-flex justify-content-center">
-                        <button type="button" className="btn btn-block btn-danger" onClick={this.handleDeleteClick}>
-                            <i className="fas fa-trash-alt"></i>
-                            <span className="d-none d-sm-none d-md-inline"> Delete Account</span>
-                        </button>
+                    <div className="card-footer text-muted row">
+                        <span className="col" >Created: {new Date(this.props.user.attributes.created_at).toLocaleDateString()}</span>
+                        <span className="col" >Updated: {new Date(this.props.user.attributes.updated_at).toLocaleDateString()}</span>
                     </div>
                 }
-
-                <div className="form-group col-sm d-flex justify-content-center">
-                    <button type="submit" className="btn btn-block btn-success p">
-                        {this.props.user ? <i className="fas fa-user-edit"></i> : <i className="fas fa-user-plus"></i>}
-                        <span className="d-none d-sm-none d-md-inline"> {this.props.user ? 'Edit' : 'Create'} Account</span>
-                    </button>
-                </div>
-    
-                {/* Conditionally render via && operator acting as if statement */}
-                {this.state.fetchMessages &&
-                    <div className="d-flex justify-content-center">
-                        <ul className="list-unstyled text-danger">
-                            {this.state.fetchMessages.map((message, index) => <li key={index}>{message}</li>)}
-                        </ul>
-                    </div>
-                }
-            </form>
+            </div>
         )
     }
 }

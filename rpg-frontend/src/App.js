@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
-import LoadGames from './components/game_saves/GameSavesContainer.js'
+import GameSaves from './components/game_saves/GameSavesContainer.js'
 // import About from './components/About.js';
 import LogIn from './components/LogIn.js'
 import AccountForm from './components/AccountForm.js'
@@ -19,25 +19,81 @@ function App() {
   // const gameSavesURL = backendURL + '/game_saves'
   // const modifiersURL = backendURL + '/modifiers'
 
-  // Fake login state via state hook
-  const [user, setUser] = useState()
+  const testUser = {
+    "id": "5",
+    "type": "user",
+    "attributes": {
+      "id": 5,
+      "email": "joslyn.mcdermott@hayes-schaefer.io",
+      "name": "Dania Hyatt",
+      "first_name": "Dania",
+      "last_name": "Hyatt",
+      "created_at": "2020-07-09T19:36:17.720Z",
+      "updated_at": "2020-07-09T19:36:17.720Z",
+      "game_saves": [
+        {
+          "id": 2,
+          "user_id": 5,
+          "character_id": 2,
+          "opponent_id": 12,
+          "current_round": 4,
+          "created_at": "2020-07-09T19:36:18.316Z",
+          "updated_at": "2020-07-09T19:36:18.316Z"
+        },
+        {
+          "id": 7,
+          "user_id": 5,
+          "character_id": 5,
+          "opponent_id": 11,
+          "current_round": 2,
+          "created_at": "2020-07-09T19:36:18.376Z",
+          "updated_at": "2020-07-09T19:36:18.376Z"
+        },
+        {
+          "id": 9,
+          "user_id": 5,
+          "character_id": 2,
+          "opponent_id": 3,
+          "current_round": 4,
+          "created_at": "2020-07-09T19:36:18.396Z",
+          "updated_at": "2020-07-09T19:36:18.396Z"
+        }
+      ]
+    }
+  }
 
-  // Login user
+
+  // Setup state via hooks
+  const [user, setUser] = useState(testUser)
+  const [characters, setCharacters] = useState([])
+
+  useEffect(() => {
+    fetchCharacters()
+  }, [])
+
+  // Login user and update state
   const logIn = (user) => {
     setUser(user)
   }
 
-  // Logout user
+  // Logout user and update state
   const logOut = () => {
     setUser()
+  }
+
+  // Fetch characters and update state
+  const fetchCharacters =() => {
+    fetch(charactersURL)
+    .then(resp => resp.json())
+    .then(json => setCharacters(json.data))
   }
 
   return (
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
-        <Route exact path="/new-game" component={() => <Game charactersURL={charactersURL} user={user} />} />
-        <Route exact path="/load-game" component={() => <LoadGames game_saves={user.attributes.game_saves} character_names={user.attributes.game_save_character_names} character_image_urls={user.attributes.game_save_character_image_urls}/>} />
+        <Route exact path="/new-game" component={() => <Game characters={characters} />} />
+        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters}/>} />
         {/* <Route exact path="/about" component={About} /> */}
 
         <Route exact path="/log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />
