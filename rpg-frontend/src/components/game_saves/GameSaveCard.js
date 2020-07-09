@@ -1,13 +1,13 @@
 import React from 'react'
 
-const GameSaveCard = ({game_save, character, opponent}) => {
+const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameSave}) => {
 
-    const handleLoadClick = gameSaveID => {
-        console.log(gameSaveID)
+    const handleLoadClick = () => {
+        loadGameSave(game_save.id)
     }
 
-    const handleDeleteClick = gameSaveID => {
-        console.log(gameSaveID)
+    const handleDeleteClick = () => {
+        deleteGameSave(game_save.id)
     }
     
     return (
@@ -28,11 +28,11 @@ const GameSaveCard = ({game_save, character, opponent}) => {
             <div className="card-body">
                 <h5>Mod: {game_save.current_round}</h5>
                 <h5>Player Character: {character.attributes.name}</h5>
-                <button className="btn btn-danger m-2" type="button" value={game_save.id} onClick={(event) => handleDeleteClick(event.target.value)}>
+                <button className="btn btn-danger m-2" type="button" onClick={handleDeleteClick}>
                     <i className="fas fa-trash-alt"></i>
                     <span className="d-none d-sm-none d-md-inline"> Delete Game</span>
                 </button>
-                <button className="btn btn-success m-2" type="button" value={game_save.id} onClick={(event) => handleLoadClick(event.target.value)}>
+                <button className="btn btn-success m-2" type="button" onClick={handleLoadClick}>
                     <i class="fas fa-gamepad"></i>
                     <span className="d-none d-sm-none d-md-inline"> Load Game</span>
                 </button>
