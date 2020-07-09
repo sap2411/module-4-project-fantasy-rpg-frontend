@@ -37,6 +37,7 @@ class Game extends Component{
         player: char,
         opponent: o
     });
+    console.log(this.props.user)
     if (!!this.props.user) this.createSave(char, o)
   }
 
@@ -56,6 +57,7 @@ class Game extends Component{
     fetch(saveUrl, options)
     .then(resp => resp.json())
     .then(json => {
+      console.log(json)
       this.setState({
         gameSave_id: json.data.id
       })

@@ -1,11 +1,12 @@
 import React from 'react';
+import Win from '../../assets/win.png';
 
 const Victory = () => {
 
 
  return (
      <div>
-         <h1>You Beat The Game!</h1>
+         <img src={Win} alt="oh no!" />
      </div>
 
  )
