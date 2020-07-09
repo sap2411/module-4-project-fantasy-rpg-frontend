@@ -38,6 +38,7 @@ class Game extends Component{
     });
   }
 
+
   loseGame = () => {
    //when player health <= 0, redirect to game over
   }
@@ -45,8 +46,15 @@ class Game extends Component{
   advanceRound = () => {
     //triggered by opponent health <= 0
     if (this.state.round < 3){
-        let next = this.state.round + 1
-        this.setState({round: next})
+      let o = this.state.collection[Math.floor(Math.random() * this.state.collection.length)];
+      let all = this.state.collection.filter(i => i !== o)
+      let next = this.state.round + 1
+      this.setState({
+        round: next,
+        collection: [...all],
+        opponent: o
+      })
+        
     }else{
     //redirect to Win
     }
