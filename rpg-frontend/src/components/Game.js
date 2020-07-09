@@ -13,20 +13,12 @@ class Game extends Component{
         beatGame: false
     }
 
-  fetchCharacters = () => {
-      fetch(this.props.charactersURL)
-      .then(resp => resp.json())
-      .then(json => {
-        const characters = json.data.map(data => data.attributes)
+  componentDidMount = () => {
+      const characters = this.props.characters.map(data => data.attributes)
         this.setState({
           collection: characters.filter(character => character.group === "Playable"),
           bosses: characters.filter(character => character.group === "Boss")
         })
-      })
-  }
-
-  componentDidMount = () => {
-      this.fetchCharacters()
   }
 
   chooseCharacter = (char) => {
