@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import CharacterSelect from './game_route/CharacterSelectPage.js';
 import Fight from './game_route/Fight.js';
-const URL = 'http://localhost:3001/characters'
-
 
 class Game extends Component{
     state = {
@@ -14,7 +12,7 @@ class Game extends Component{
     }
 
   fetchCharacters = () => {
-      fetch(URL)
+      fetch(this.props.charactersURL)
       .then(resp => resp.json())
       .then(json => {
         const characters = json.data.map(data => data.attributes)

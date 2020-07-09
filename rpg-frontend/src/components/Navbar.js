@@ -57,7 +57,7 @@ const Navbar = ({user, logOut}) => {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <NavLink exact to="/edit-account" className="dropdown-item" ><i className="fas fa-user-edit"></i> Edit Account</NavLink>
                                 <div className="dropdown-divider"></div>
-                                <NavLink exact to="/log-out" className="dropdown-item p" onClick={logOut}><i className="fas fa-sign-out-alt"></i> Logout</NavLink>
+                                <NavLink exact to="/log-in" className="dropdown-item p" onClick={logOut}><i className="fas fa-sign-out-alt"></i> Logout</NavLink>
                             </div>
                         </li>
                     }
