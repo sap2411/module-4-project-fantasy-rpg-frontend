@@ -20,7 +20,7 @@ function App() {
   // const modifiersURL = backendURL + '/modifiers'
 
   // Fake login state via state hook
-  const [user, setUser] = useState(testUser)
+  const [user, setUser] = useState()
 
   // Login user
   const logIn = (user) => {
