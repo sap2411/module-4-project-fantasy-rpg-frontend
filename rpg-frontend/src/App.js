@@ -19,48 +19,6 @@ function App() {
   // const gameSavesURL = backendURL + '/game_saves'
   // const modifiersURL = backendURL + '/modifiers'
 
-  const testUser = {
-    "id": "183",
-    "type": "user",
-    "attributes": {
-      "email": "charlie@pouros.name",
-      "name": "Tess Swift",
-      "first_name": "Tess",
-      "last_name": "Swift",
-      "game_saves": [
-        {
-          "id": 115,
-          "user_id": 183,
-          "character_id": 135,
-          "current_round": 0
-        },
-        {
-          "id": 116,
-          "user_id": 183,
-          "character_id": 139,
-          "current_round": 5
-        },
-        {
-          "id": 119,
-          "user_id": 183,
-          "character_id": 146,
-          "current_round": 1
-        }
-      ],
-      "game_save_character_names": [
-        "Joshua Mclean",
-        "Matt Milton",
-        "John Franti"
-      ],
-      "game_save_character_image_urls": [
-        "https://ca.slack-edge.com/T02MD9XTF-UUJDV171R-88692fb6e05a-512",
-        "https://ca.slack-edge.com/T02MD9XTF-USXFDH4HW-bba52931d289-512",
-        "https://ca.slack-edge.com/T02MD9XTF-UJU0RHGQP-dd78c31927cc-512"
-      ]
-    }
-  }
-
-
   // Fake login state via state hook
   const [user, setUser] = useState(testUser)
 
