@@ -36,7 +36,7 @@ function App() {
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
-        <Route exact path="/new-game" component={() => <Game charactersURL={charactersURL} />} />
+        <Route exact path="/new-game" component={() => <Game charactersURL={charactersURL} user={user} />} />
         <Route exact path="/load-game" component={() => <LoadGames game_saves={user.attributes.game_saves} character_names={user.attributes.game_save_character_names} character_image_urls={user.attributes.game_save_character_image_urls}/>} />
         {/* <Route exact path="/about" component={About} /> */}
 
