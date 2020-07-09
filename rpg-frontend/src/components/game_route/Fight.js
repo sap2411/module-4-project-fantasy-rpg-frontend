@@ -3,7 +3,7 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
-import ReactAnimations from './ReactAnimations.js';
+import { HealAnimation, GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
 
 
 class Fight extends Component {
@@ -54,6 +54,36 @@ class Fight extends Component {
   onOpponentClick = (arg=false) => {
     this.setState({opponentBack: arg})
   }
+
+  whoWon = () => {
+    if (this.state.players_health === 0) return (<GameOverAnimation handleClick={this.handleRematch}/>);
+    if (this.state.opponents_health === 0) return (<VictoryAnimation handleClick={this.handleVictory}/>);
+    return (<h3>VS</h3>)
+  }
+
+  handleVictory = () => {
+    // this.setState({
+    //   playerBack: false,
+    //   opponentBack: false,
+    //   players_health: this.props.player.health,
+    //   opponents_health: this.props.opponent.health,
+    //   log: ["Fight!"],
+    //   aggressor: "player"
+    // })
+    //healt is not resetting into the next round, not sure how to fix it
+    this.props.advanceRound()
+  }
+
+  handleRematch = () => {
+    this.setState({
+      playerBack: false,
+      opponentBack: false,
+      players_health: this.props.player.health,
+      opponents_health: this.props.opponent.health,
+      log: ["Fight!"],
+      aggressor: "player"
+    })
+  }
  
   render() {
     return (
@@ -61,7 +91,7 @@ class Fight extends Component {
       <h1 className='col text-center'>Mod {this.props.round}</h1>
       <div className='ui two column centered grid'>
         {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
-        <h3>VS</h3>
+        {this.whoWon()}
         {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
       </div>
       <div className='ui two column centered grid'>
