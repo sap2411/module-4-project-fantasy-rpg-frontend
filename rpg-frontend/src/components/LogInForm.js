@@ -4,8 +4,7 @@ import {Redirect} from 'react-router-dom';
 class LogIn extends Component {
 
   state = {
-    email: '',
-    redirect: null
+    email: ''
   }
 
   handleSubmit = event => {
@@ -20,6 +19,11 @@ class LogIn extends Component {
   }
 
   render () {
+    // Redirect if user is already logged in
+    if (this.props.user) {
+      return <Redirect to='/saved-games' />
+    }
+
     return (
       <form className="card col-3 my-5 mx-auto p-3 rounded-lg" onSubmit={event => this.handleSubmit(event)}>
         <div className="form-group col-sm d-flex justify-content-center">

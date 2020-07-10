@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
 import GameSaves from './components/game_saves/GameSavesContainer.js'
@@ -22,15 +22,13 @@ function App() {
   const [logInFormErrors, setLogInFormErrors] = useState()
   const [characters, setCharacters] = useState([])
 
+  // Fetch characters upon component load
   useEffect(() => {
     fetchCharacters()
   }, [])
 
   // Login user and update state
-  const logIn = (userEmail) => {
-    // User can be refreshed without passing userEmail if already logged in via state
-    if (!userEmail) {userEmail = user.attributes.email}
-
+  const logIn = (userEmail, redirectPath) => {
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -46,10 +44,14 @@ function App() {
           setLogInFormErrors()
           // Fake log in user via state
           setUser(response.data)
-          // Redirect via state update
-          // return {redirect: '/new-game'}
-      }
-    })
+        }
+      })
+    }
+
+
+  // Refresh logged in user data
+  const refreshUser = () => {
+    logIn(user.attributes.email)
   }
 
   // Logout user and update state
@@ -68,16 +70,11 @@ function App() {
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
-<<<<<<< HEAD
         <Route exact path="/new-game" component={() => <Game characters={characters} user={user}/>} />
-        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters}/>} />
-=======
-        <Route exact path="/new-game" component={() => <Game characters={characters} />} />
-        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} refreshUser={logIn} />} />
->>>>>>> master
+        <Route exact path="/saved-games" component={() => <GameSaves gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
         {/* <Route exact path="/about" component={About} /> */}
 
-        <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} formErrors={logInFormErrors}/>} />
+        <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} user={user} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
         <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut}/>} />
       </div>
