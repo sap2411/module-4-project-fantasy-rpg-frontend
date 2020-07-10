@@ -3,7 +3,7 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
-import { HealAnimation, GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
+import { GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
 
 
 class Fight extends Component {
@@ -99,7 +99,7 @@ class Fight extends Component {
   render() {
     return (
     <div>
-      {this.state.round == 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
+      {this.state.round === 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
       {this.whoWon()}
       <div className='ui two column centered grid'>
         <AbilityButtons abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>

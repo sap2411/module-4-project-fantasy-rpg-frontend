@@ -19,6 +19,7 @@ function App() {
 
   // Setup state via hooks
   const [user, setUser] = useState()
+  const [loaded, setLoaded] = useState()
   const [logInFormErrors, setLogInFormErrors] = useState()
   const [characters, setCharacters] = useState([])
 
@@ -66,11 +67,15 @@ function App() {
     .then(json => setCharacters(json.data))
   }
 
+  const loadGame = (file) => {
+    setLoaded(file)
+  }
+
   return (
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
-        <Route exact path="/new-game" component={() => <Game characters={characters} user={user}/>} />
+        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
         <Route exact path="/saved-games" component={() => <GameSaves gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
         {/* <Route exact path="/about" component={About} /> */}
 

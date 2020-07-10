@@ -9,6 +9,20 @@ class Game extends Component{
     
   constructor(props){
     super(props)
+    if (this.props.load) {
+      let p = this.props.characters.find(char => char.id == this.props.load.character_id);
+      let o = this.props.characters.find(char => char.id == this.props.load.opponent_id);
+      this.state = {
+        collection: [],
+        round: this.props.load.current_round,
+        bosses: [],
+        player: p.attributes,
+        opponent: o.attributes,
+        opponent_health: o.attributes.health,
+        beatGame: false,
+        gameSave_id: this.props.load.id
+      }  
+    }else{
     this.state = {
       collection: [],
       round: 4,
@@ -19,6 +33,7 @@ class Game extends Component{
       beatGame: false,
       gameSave_id: null
     }
+  }
   }
 
   componentDidMount = () => {
@@ -103,7 +118,7 @@ class Game extends Component{
         opponent_health: o.health
       })
       if (this.props.user) this.updateSave(o,next)
-    }else if (this.state.round == 4){
+    }else if (this.state.round === 4){
       let final = 5
       let boss = this.state.bosses[Math.floor(Math.random() * this.state.bosses.length)]
       this.setState({
