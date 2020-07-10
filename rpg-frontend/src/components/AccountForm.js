@@ -109,7 +109,7 @@ class AccountForm extends Component {
                         </div>
                     }
 
-                    <div className="col-sm">
+                    <div className="form-group col-sm">
                         <button type="submit" className="btn btn-block btn-success p">
                             {this.props.user ? <i className="fas fa-user-edit"></i> : <i className="fas fa-user-plus"></i>}
                             <span className="d-none d-sm-none d-md-inline"> {this.props.user ? 'Edit' : 'Create'} Account</span>

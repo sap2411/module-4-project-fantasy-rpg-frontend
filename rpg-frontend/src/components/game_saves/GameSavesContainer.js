@@ -3,7 +3,7 @@ import GameSaveCard from './GameSaveCard.js'
 import {Link} from 'react-router-dom';
 
 
-const GameSaveContainer = ({game_saves, characters, gameSavesURL}) => {
+const GameSaveContainer = ({game_saves, characters, gameSavesURL, refreshUser}) => {
 
     const loadGameSave = (gameSaveID) => {
         // redirect to appropiate route
@@ -14,9 +14,12 @@ const GameSaveContainer = ({game_saves, characters, gameSavesURL}) => {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
         }
-        fetch(gameSavesURL + '/' + gameSaveID, options)
-        // Should update the logged in user somehow........
-        // Also should do some error checking
+        fetch(gameSavesURL + '/' + gameSaveID, options).then(resp => resp.json()).then(json => {
+            // Verify delete succesful before refreshing user.
+            if (response.deleted) {
+                refreshUser()
+            }
+        })
     }
     
 

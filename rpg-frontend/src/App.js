@@ -19,8 +19,7 @@ function App() {
 
   // Setup state via hooks
   const [user, setUser] = useState()
-  const [logInFormErrors, setLogInFormErrors] = useState([])
-  const [accountInFormErrors, setAccountInFormErrors] = useState([])
+  const [logInFormErrors, setLogInFormErrors] = useState()
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
@@ -29,6 +28,9 @@ function App() {
 
   // Login user and update state
   const logIn = (userEmail) => {
+    // User can be refreshed without passing userEmail if already logged in via state
+    if (!userEmail) {userEmail = user.attributes.email}
+
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -67,12 +69,12 @@ function App() {
       <div>
         <Navbar user={user} logOut={logOut}/>
         <Route exact path="/new-game" component={() => <Game characters={characters} />} />
-        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} />} />
+        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} refreshUser={logIn} />} />
         {/* <Route exact path="/about" component={About} /> */}
 
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
-        <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut} formErrors={logInFormErrors}/>} />
+        <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut}/>} />
       </div>
     </Router>
   );
