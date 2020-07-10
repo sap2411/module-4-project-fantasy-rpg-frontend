@@ -16,7 +16,7 @@ const GameSaveContainer = ({game_saves, characters, gameSavesURL, refreshUser}) 
         }
         fetch(gameSavesURL + '/' + gameSaveID, options).then(resp => resp.json()).then(json => {
             // Verify delete succesful before refreshing user.
-            if (response.deleted) {
+            if (json.deleted) {
                 refreshUser()
             }
         })
