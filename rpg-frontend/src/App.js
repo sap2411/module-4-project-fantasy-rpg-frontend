@@ -77,8 +77,7 @@ function App() {
         <Navbar user={user} logOut={logOut}/>
         <Route exact path="/" component={About} />
         <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
-        <Route exact path="/saved-games" component={() => <GameSaves gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
-
+        <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} user={user} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
         <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut}/>} />

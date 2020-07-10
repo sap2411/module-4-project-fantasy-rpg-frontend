@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { bounce } from 'react-animations';
+import { bounce, shake} from 'react-animations';
+import Swords from '../../assets/swords.png';
 
 const bounceAnimation = keyframes`${bounce}`;
 
-const BouncyDiv = styled.div`
-  animation: 1s ${bounceAnimation};
+const shakeAnimation = keyframes`${shake}`;
+
+const ShakyDiv = styled.div`
+animation: 3s ${shakeAnimation} infinite;
 `;
-class HealAnimation extends Component {
+const BouncyDiv = styled.div`
+  animation: 2s ${bounceAnimation};
+`;
+class FightAnimation extends Component {
     render(){
         return(
-        <BouncyDiv><i className="icon large circular red heartbeat" /></BouncyDiv>
+        <ShakyDiv><img width={100} hieght={100} src={Swords} alt='woops' /></ShakyDiv>
         );
     }
 }
@@ -44,6 +50,6 @@ const VictoryAnimation = (props) => {
   
 }
 
-export { HealAnimation, GameOverAnimation, VictoryAnimation };
+export { FightAnimation, GameOverAnimation, VictoryAnimation };
 
 //
