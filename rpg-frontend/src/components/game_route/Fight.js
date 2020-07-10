@@ -68,13 +68,13 @@ class Fight extends Component {
     return (
       <div className="row d-flex justify-content-md-center">
         <div className="col-4 text-center" >
-          {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
+          {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} displayHealthProgress={true}/>}
         </div>
         <div className="col-1 text-center">
           {this.state.disable ? <FightAnimation />: <h3>VS</h3>}
         </div>
         <div className="col-4 text-center">
-          {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
+          {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} displayHealthProgress={true}/>}
         </div>
       </div>
     )
