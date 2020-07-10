@@ -3,7 +3,7 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
-import { GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
+import { FightAnimation, GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
 
 
 class Fight extends Component {
@@ -14,7 +14,8 @@ class Fight extends Component {
       players_health: this.props.player.health,
       opponents_health: this.props.opponent_health,
       log: ["Fight!"],
-      aggressor: "player"
+      aggressor: "player",
+      disable: null
   }
 
   playerAttack = (abilityID) => {
@@ -27,7 +28,8 @@ class Fight extends Component {
       players_health: prevState.players_health + ability.healing_effect <= this.props.player.health ? prevState.players_health + ability.healing_effect : this.props.player.health,
       opponents_health: prevState.opponents_health - ability.damage_effect >= 0 ? prevState.opponents_health - ability.damage_effect : 0,
       log: [this.props.player.name + this.abilityLogMessage(ability), ...prevState.log],
-      aggressor: "opponent"
+      aggressor: "opponent",
+      disable: ability
     }))
     // Call opponent to attack after a short timeout
     setTimeout(this.opponentAttack, 500)
@@ -66,7 +68,7 @@ class Fight extends Component {
     return (
       <div className='ui two column centered grid'>
         {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
-        <h3>VS</h3>
+        {this.state.disable ? <FightAnimation />: <h3>VS</h3>}
         {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
       </div>
     )
@@ -102,7 +104,7 @@ class Fight extends Component {
       {this.state.round === 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
       {this.whoWon()}
       <div className='ui two column centered grid'>
-        <AbilityButtons abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>
+        <AbilityButtons disable={this.state.disable} abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>
         <BattleLog log={this.state.log}/>
       </div>
     </div>
