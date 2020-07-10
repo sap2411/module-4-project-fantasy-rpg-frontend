@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Flatiron Fight - Frontend
 
-## Available Scripts
+Flatiron Fight is a game made with React that highlights the members of the Flatiron 4/20/2020 cohort and their amusing personalities. A user can select a character inspired by a cohort member, and use custom abilities to fight through the 'Flatiron Mods' in order to reach 'Mod 5' and face off against a Flatiron instructor.
 
-In the project directory, you can run:
+[This](https://github.com/mathewpwheatley/module-4-project-fantasy-rpg-backend) is a link the the back-end repository.
 
-### `yarn start`
+## Motivation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We wanted to create a game that memorialized our cohort and the fun things we learned about eachother along the way.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Screenshots
+Home Page
 
-### `yarn test`
+<img src="public/AppDemo/welcome.png" width="800">
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create Account
 
-### `yarn build`
+<img src="public/AppDemo/create.png" width="800">
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Load Saved Game
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<img src="public/AppDemo/saved.png" width="800">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+New Game - Choose Character
 
-### `yarn eject`
+<img src="public/AppDemo/choose.png" width="800">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+View Character Specs Before Choosing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="public/AppDemo/specs.png" width="800">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Level 4
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="public/AppDemo/mod4.png" width="800">
 
-## Learn More
+Level 5 - Boss Fight
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="public/AppDemo/mod5.png" width="800">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Beat The Game
 
-### Code Splitting
+<img src="public/AppDemo/win.png" width="800">
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+## Technology Used
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- JS
+- Rails Router
+- React
+- Bootstrap
+- React Animations
 
-### Making a Progressive Web App
+## Features
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Users Can:
+- Create an account
+- Start a new game
+- Choose a character
+- Automatically have their game saved, and have access to reloading that saved game
+- Fight against other characters for 4 leves, and against a bos at the 5th level, and beat the game
+- Rematch if they lose a battle
 
-### Advanced Configuration
+## Installation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Clone the front-end, and run 'npm i && npm audit fix' then 'yarn start'
 
-### Deployment
+Clone back-end repo, run the following commands in order: bundle install, rails db:migrate, rails db:seed, rails s -p 3001.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Contributing
 
-### `yarn build` fails to minify
+Contributions are welcome, submit a pull request!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Authors
+
+* **Steven Parsons** - [GitHub](https://github.com/sap24471)
+* **Mathew Wheatley** - [GitHub](https://github.com/mathewpwheatley)
+* **Gabriel de Sousa** - [GitHub](https://github.com/GabedeSousa)
+
+## License
+
+This project is licensed under the [GNU GPL](https://www.gnu.org/licenses/gpl-3.0.en.html)
