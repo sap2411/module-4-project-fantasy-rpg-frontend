@@ -1,5 +1,6 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+
 const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameSave}) => {
 
     const handleLoadClick = () => {
@@ -32,13 +33,12 @@ const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameS
                     <i className="fas fa-trash-alt"></i>
                     <span className="d-none d-sm-none d-md-inline"> Delete Game</span>
                 </button>
-                <button className="btn btn-success m-2 p" type="button" onClick={handleLoadClick}>
-                    <i class="fas fa-gamepad"></i>
-                    <NavLink exact to="/new-game"  title="New Game">
-                            <span className="d-none d-sm-none d-md-inline"> Load Game</span>
-                    </NavLink>
-                    
-                </button>
+                <Link exact to="/new-game"  title="New Game">
+                    <button className="btn btn-success m-2 p" type="button" onClick={handleLoadClick}>
+                        <i class="fas fa-gamepad"></i>
+                        <span className="d-none d-sm-none d-md-inline"> Load Game</span>
+                    </button>
+                </Link>
             </div>
             <div className="card-footer text-muted">
                 Last Save: {new Date(game_save.updated_at).toLocaleDateString()}

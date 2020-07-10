@@ -66,10 +66,16 @@ class Fight extends Component {
     if (this.state.players_health === 0) return (<GameOverAnimation handleClick={this.handleRematch}/>);
     if (this.state.opponents_health === 0) return (<VictoryAnimation handleClick={this.handleVictory}/>);
     return (
-      <div className='ui two column centered grid'>
-        {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
-        {this.state.disable ? <FightAnimation />: <h3>VS</h3>}
-        {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
+      <div className="row d-flex justify-content-md-center">
+        <div className="col-4 text-center" >
+          {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
+        </div>
+        <div className="col-1 text-center">
+          {this.state.disable ? <FightAnimation />: <h3>VS</h3>}
+        </div>
+        <div className="col-4 text-center">
+          {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
+        </div>
       </div>
     )
   }
@@ -100,11 +106,13 @@ class Fight extends Component {
  
   render() {
     return (
-    <div>
+    <div className="container col-8">
       {this.state.round === 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
       {this.whoWon()}
-      <div className='ui two column centered grid'>
+      <div className="row justify-content-md-center my-4">
         <AbilityButtons disable={this.state.disable} abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>
+      </div>
+      <div className="row justify-content-md-center">
         <BattleLog log={this.state.log}/>
       </div>
     </div>
