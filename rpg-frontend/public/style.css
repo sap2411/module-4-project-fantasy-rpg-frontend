@@ -8,3 +8,69 @@ body{
   background-size: 100% auto;
   background-repeat: no-repeat;
 }
+
+#vitoria{
+  background: #00b3e6;
+  text-align: center;
+  height: 800px;
+  padding-top: 100px;
+  border-width: 5px;
+}
+#vitoria h1{
+  color: #ffffff;
+}
+#vitoria img{
+  border: solid;
+  box-shadow: #ffffff;
+  padding: 5px;
+  border-color: #ffffff;
+}
+
+:root {
+  --animation: glitch; /* glitch, hue, fade, shrink */
+  --speed: 2s;
+  --easing: linear;
+}
+.gameover {
+  padding: 1em;
+  font-family: "Press Start 2P", Arial, sans-serif;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #2f99ff;
+  text-shadow: 0px 2px #255fcc;
+  animation: var(--animation) var(--speed) infinite var(--easing);
+  display: flex;
+  margin: 0;
+  height: 800px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: #00b3e6;
+  overflow: hidden;
+}
+/* h1 { font-size: 3em }
+h3 { 
+  font-size: 20px;
+} */
+@keyframes glitch {
+  0%, 12%, 15%, 52%, 55%, 82%, 85%, 100% { opacity: 1; transform: scaleX(1) scaleY(1) }  
+  13% { opacity: .8; transform: scaleY(2); color: #0ff }
+  53% { opacity: .8; transform: scaleX(.7);  color: #f0f }
+  83% { opacity: .8; transform: rotate(-10deg); color: #ff0 }
+}
+@keyframes hue {  
+  13% { color: #0ff }
+  53% { color: #f0f }
+  83% { color: #ff0 }
+}
+@keyframes shrink {  
+   0% { transform: scaleY(1) }
+  50% { transform: scaleY(.5) }
+ 100% { transform: scaleY(1) }
+}
+@keyframes fade {  
+   0% { opacity: 1 }
+  50% { opacity: 0 }
+ 100% { opacity: 1 }
+}
