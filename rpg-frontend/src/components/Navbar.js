@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {NavLink} from 'react-router-dom';
 
-const Navbar = ({user, logOut}) => {
+const Navbar = ({loadGame, user, logOut}) => {
     return (
         <header className="navbar navbar-expand navbar-dark bg-primary shadow flex-column flex-md-row bd-navbar">
             <nav className="collapse navbar-collapse" >
@@ -13,7 +13,7 @@ const Navbar = ({user, logOut}) => {
                     <li className="nav-item">
                         <NavLink exact to="/new-game" className="nav-link" title="New Game">
                             <i className="fas fa-gamepad"></i>
-                            <span className="d-none d-sm-none d-md-inline p"> New Game</span>
+                            <span onClick={() => loadGame(null)} className="d-none d-sm-none d-md-inline p"> New Game</span>
                         </NavLink>
                     </li>
                     {/* Conditionally render based on user prop*/}

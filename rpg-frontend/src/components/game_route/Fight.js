@@ -3,8 +3,21 @@ import AbilityButtons from './AbilityButtons';
 import CharacterCard from './CharacterCard.js';
 import BackCard from "./BackCard.js";
 import BattleLog from './BattleLog.js';
-import { FightAnimation, GameOverAnimation, VictoryAnimation } from './ReactAnimations.js';
+import { GameOverAnimation, VictoryAnimation, Colton, EndGame } from './ReactAnimations.js';
+import { jello, wobble } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
 
+const jelloAnimation = keyframes`${jello}`;
+
+const JellyDiv = styled.div`
+animation: 1s ${jelloAnimation} 1;
+`;
+
+const wobbleAnimation = keyframes`${wobble}`;
+
+const WobblyDiv = styled.div`
+animation: 1.5s ${wobbleAnimation} 1;
+`;
 
 class Fight extends Component {
   
@@ -16,6 +29,22 @@ class Fight extends Component {
       log: ["Fight!"],
       aggressor: "player",
       disable: null
+  }
+
+  playerJellyAnimation = () => {
+    console.log(this.state.aggressor)
+    if (this.state.aggressor === "player"){
+      return <JellyDiv><CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} /></JellyDiv>
+    }
+    return <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />
+  }
+
+  opponentWobblyAnimation = () => {
+    console.log(this.state.aggressor)
+    if (this.state.aggressor === "player"){
+      return <WobblyDiv><CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} /></WobblyDiv>
+    }
+    return <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />
   }
 
   playerAttack = (abilityID) => {
@@ -64,17 +93,19 @@ class Fight extends Component {
 
   whoWon = () => {
     if (this.state.players_health === 0) return (<GameOverAnimation handleClick={this.handleRematch}/>);
-    if (this.state.opponents_health === 0) return (<VictoryAnimation handleClick={this.handleVictory}/>);
+    if (this.state.opponents_health === 0 && this.props.round == 4) return (<Colton handleClick={this.handleVictory}/>)
+    if (this.state.opponents_health === 0 && this.props.round < 4) return (<VictoryAnimation handleClick={this.handleVictory}/>);
+    if (this.state.opponents_health === 0 && this.props.round == 5) return (<EndGame handleClick={this.handleVictory}/>);
     return (
       <div className="row d-flex justify-content-md-center">
         <div className="col-4 text-center" >
-          {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />}
+          {this.state.playerBack ? <BackCard  character={this.props.player} handleDivClick={this.onPlayerClick} /> : this.playerJellyAnimation()}
         </div>
         <div className="col-1 text-center">
-          {this.state.disable ? <FightAnimation />: <h3>VS</h3>}
+          <h3>VS</h3>
         </div>
         <div className="col-4 text-center">
-          {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />}
+          {this.state.opponentBack ? <BackCard  character={this.props.opponent} handleDivClick={this.onOpponentClick} /> : this.opponentWobblyAnimation()}
         </div>
       </div>
     )
@@ -107,7 +138,7 @@ class Fight extends Component {
   render() {
     return (
     <div className="container col-8">
-      {this.state.round === 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
+      {this.props.round === 5 ? <h1 className='col text-center'>MOD 5 - INSTRUCTOR FIGHT</h1> : <h1 className='col text-center'>MOD {this.props.round}</h1>}
       {this.whoWon()}
       <div className="row justify-content-md-center my-4">
         <AbilityButtons disable={this.state.disable} abilities={this.props.player.abilities} playerAttack={this.playerAttack} aggressor={this.state.aggressor}/>

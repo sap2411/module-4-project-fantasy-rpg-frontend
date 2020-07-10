@@ -40,7 +40,7 @@ const GameSaveContainer = ({loadGame, game_saves, characters, gameSavesURL, refr
     return (
         <div className="container my-5 mx-auto text-center" >
             <Link exact to="/new-game" title="New Game">
-                <button className="btn btn-light btn-lg m-2" type="button">
+                <button className="btn btn-light btn-lg m-2" type="button" onClick={() => loadGame(null)}>
                     <i className="fas fa-gamepad"></i>
                     <span className="d-none d-sm-none d-md-inline"> New Game</span>
                 </button>

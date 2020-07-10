@@ -67,14 +67,14 @@ function App() {
     .then(json => setCharacters(json.data))
   }
 
-  const loadGame = (file) => {
+  const loadGame = (file=null) => {
     setLoaded(file)
   }
 
   return (
     <Router>
       <div>
-        <Navbar user={user} logOut={logOut}/>
+        <Navbar user={user} loadGame={loadGame} logOut={logOut}/>
         <Route exact path="/" component={About} />
         <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
         <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
