@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
 import GameSaves from './components/game_saves/GameSavesContainer.js'
-// import About from './components/About.js';
+import About from './components/About.js';
 import LogInForm from './components/LogInForm.js'
 import AccountForm from './components/AccountForm.js'
 
@@ -75,10 +75,9 @@ function App() {
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
+        <Route exact path="/" component={About} />
         <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
         <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
-        {/* <Route exact path="/about" component={About} /> */}
-
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} user={user} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
         <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut}/>} />

@@ -1,82 +1,46 @@
 import React from "react";
-import Colton from '../../assets/boss.png'
-
 
 const CharacterSpecs = props => {
+
+  const characterAbilities = () => {
+    return props.character.abilities.map(ability => {
+    return (
+            <div className="col" key={ability.id}>
+                <ul className="list-unstyled">
+                    <li><h3>{ability.group}: {ability.name}</h3></li>
+                    <li><h4>Damage Effect: {ability.damage_effect} <i className="fas fa-fist-raised text-warning"/></h4></li>
+                    <li><h4>Healing Effect: {ability.healing_effect} <i className="fas fa-heart text-danger"/></h4></li>
+                    <li><h4>Cooldown: {ability.cooldown} <i className="fas fa-sync-alt text-success"/></h4></li>
+                </ul>
+            </div>
+        )
+      })
+    }
+
   return (
-    <div className="ui segment">
-      <div className="ui two column centered grid">
-        <div className="row">
-          <div className="four wide column">
-            <img
-              alt="oh no!"
-              className="ui medium circular image bordered"
-              src={props.character.image_url? props.character.image_url : Colton}
-            />
-          </div>
-          <div className="four wide column">
-            <h2>Name: {props.character.name}</h2>
-            <p>
-              <strong>Catchphrase: </strong>
-              {props.character.catchphrase}
-            </p>
-            {/* <strong>
-              "Special Ability"
-            </strong> */}
-            <br />
-          </div>
+    <div className="jumbotron container rounded-lg col-6 p-5 bg-white mx-auto">
+      <div className="row">
+        <div className="col-6">
+          <img className="img-thumbnail rounded-circle mt-3" width="250px" height="auto" alt={props.character.name} src={props.character.image_url}/>
+        </div>
+        <div className="col-6">
+          <h1 className="display-4 mt-5">{props.character.name}</h1>
+          <p className="lead">{props.character.catchphrase}</p>
+          <h1 className="display-6" ><i className="display-6 icon large circular red heart" /> {props.character.health}</h1>
         </div>
       </div>
-            <div className="ui segment">
-              <div className="ui one column centered grid">
-                
-                  <div className="column">
-                    <i className="icon large circular yellow lightning" />
-                  </div>
-                  <div className="column">
-                    <strong>Attack: {props.character.abilities[0].name}</strong>
-                  </div>
-                  <div className="column">
-                    <strong>Description: {props.character.abilities[0].description}</strong>
-                  </div><br/>
-                
-                
-                  <div className="column">
-                    <i className="icon large circular red heartbeat" />
-                  </div>
-                  <div className="column">
-                    <strong>Defence: {props.character.abilities[1].name}</strong>
-                  </div>
-                  <div className="column">
-                    <strong>Description: {props.character.abilities[1].description}</strong>
-                  </div><br/>
-              
-                
-                  <div className="column">
-                    <i className="icon large circular blue star" />
-                  </div>
-                  <div className="column">
-                    <strong>Special: {props.character.abilities[2].name}</strong>
-                  </div>
-                  <div className="column">
-                    <strong>Description: {props.character.abilities[2].description}</strong>
-                  </div>
-                
-              </div>
-            </div>
-            <button
-              className="ui button fluid"
-              onClick={() => {props.toggleView()}}
-            >
-              Go Back
-            </button>
-            <button
-              className="ui button fluid"
-              onClick={() => {props.choose(props.character)}}
-            >
-              Play Character
-            </button>
-          </div>
+      <div className="row my-5">
+        {characterAbilities()}
+      </div>
+      <button className="btn btn-secondary btn-lg mx-4" type="button" onClick={() => {props.toggleView()}}>
+          <i className="fas fa-step-backward"></i>
+          <span className="d-none d-sm-none d-md-inline"> Go Back</span>
+      </button>
+      <button className="btn btn-success btn-lg mx-4" type="button" onClick={() => {props.choose(props.character)}}>
+          <i className="fas fa-gamepad"></i>
+          <span className="d-none d-sm-none d-md-inline"> Start Game</span>
+      </button>
+    </div>
   );
 };
 

@@ -10,7 +10,7 @@ const BattleLog = (props) => {
 
 
     return (
-        <div className="ui segment">
+        <div className="jumbotron col-8 rounded-lg bg-white py-2 text-muted text-center">
             {renderLog()}
         </div>
     );
