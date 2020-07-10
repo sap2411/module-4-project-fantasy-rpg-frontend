@@ -1,9 +1,9 @@
 import React from 'react'
-
+import {NavLink} from 'react-router-dom';
 const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameSave}) => {
 
     const handleLoadClick = () => {
-        loadGameSave(game_save.id)
+        loadGameSave(game_save)
     }
 
     const handleDeleteClick = () => {
@@ -11,7 +11,7 @@ const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameS
     }
     
     return (
-        <div className="card m-4 p text-center">
+        <div className="card m-4 text-center">
             <div className="card-header">
                 <ul className="list-inline">
                     <li className="list-inline-item">
@@ -28,13 +28,16 @@ const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameS
             <div className="card-body">
                 <h5>Mod: {game_save.current_round}</h5>
                 <h5>Player Character: {character.attributes.name}</h5>
-                <button className="btn btn-danger m-2" type="button" onClick={handleDeleteClick}>
+                <button className="btn btn-danger m-2 p" type="button" onClick={handleDeleteClick}>
                     <i className="fas fa-trash-alt"></i>
                     <span className="d-none d-sm-none d-md-inline"> Delete Game</span>
                 </button>
-                <button className="btn btn-success m-2" type="button" onClick={handleLoadClick}>
+                <button className="btn btn-success m-2 p" type="button" onClick={handleLoadClick}>
                     <i class="fas fa-gamepad"></i>
-                    <span className="d-none d-sm-none d-md-inline"> Load Game</span>
+                    <NavLink exact to="/new-game"  title="New Game">
+                            <span className="d-none d-sm-none d-md-inline"> Load Game</span>
+                    </NavLink>
+                    
                 </button>
             </div>
             <div className="card-footer text-muted">
