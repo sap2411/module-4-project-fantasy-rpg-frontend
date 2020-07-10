@@ -11,10 +11,11 @@ class Game extends Component{
     super(props)
     this.state = {
       collection: [],
-      round: 1,
+      round: 4,
       bosses: [],
       player: null,
       opponent: null,
+      opponent_health: null,
       beatGame: false,
       gameSave_id: null
     }
@@ -35,7 +36,8 @@ class Game extends Component{
     this.setState({
         collection: [...all],
         player: char,
-        opponent: o
+        opponent: o,
+        opponent_health: o.health
     });
     if (!!this.props.user) this.createSave(char, o)
   }
@@ -56,6 +58,7 @@ class Game extends Component{
     fetch(saveUrl, options)
     .then(resp => resp.json())
     .then(json => {
+      console.log(json)
       this.setState({
         gameSave_id: json.data.id
       })
@@ -96,7 +99,8 @@ class Game extends Component{
       this.setState({
         round: next,
         collection: [...all],
-        opponent: o
+        opponent: o,
+        opponent_health: o.health
       })
       if (this.props.user) this.updateSave(o,next)
     }else if (this.state.round == 4){
@@ -104,7 +108,8 @@ class Game extends Component{
       let boss = this.state.bosses[Math.floor(Math.random() * this.state.bosses.length)]
       this.setState({
         round: final,
-        opponent: boss
+        opponent: boss,
+        opponent_health: boss.health
       })
       if (this.props.user) this.updateSave(boss,final)
     }else{
@@ -115,7 +120,7 @@ class Game extends Component{
   }
 
   startGame = () => {
-    return this.state.player ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />
+    return this.state.player ? <Fight loseGame={this.loseGame} advanceRound={this.advanceRound} round={this.state.round} opponent_health={this.state.opponent_health} player={this.state.player} opponent={this.state.opponent} /> : <CharacterSelect chooseCharacter={this.chooseCharacter} collection={this.state.collection} />
   }
     
   render() {

@@ -1,12 +1,15 @@
 import React from 'react';
+import Win from '../../assets/win.png';
 
 const Victory = () => {
 
 
  return (
-     <div>
-         <h1>You Beat The Game!</h1>
-     </div>
+        <div className="ui one column centered grid">
+        <div className="row">
+         <img className='img centered background' width={800} hieght={800} src={Win} alt="oh no!" />
+         </div>
+         </div>
 
  )
 }
