@@ -21,7 +21,6 @@ const GameSaveContainer = ({loadGame, game_saves, characters, gameSavesURL, refr
             }
         })
     }
-    
 
     const gameSaveCards = () => {
         return game_saves.map(game_save => {
