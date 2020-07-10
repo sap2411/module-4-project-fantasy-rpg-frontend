@@ -2,7 +2,7 @@
 
 Flatiron Fight is a game made with React that highlights the members of the Flatiron 4/20/2020 cohort and their amusing personalities. A user can select a character inspired by a cohort member, and use custom abilities to fight through the 'Flatiron Mods' in order to reach 'Mod 5' and face off against a Flatiron instructor.
 
-[This](https://github.com/mathewpwheatley/module-4-project-fantasy-rpg-backend) is a link the the back-end repository.
+[This](https://github.com/mathewpwheatley/module-4-project-fantasy-rpg-backend) is a link to the back-end repository.
 
 ## Motivation
 
