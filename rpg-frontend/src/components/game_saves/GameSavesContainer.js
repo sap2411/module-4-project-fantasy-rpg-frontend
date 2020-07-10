@@ -10,7 +10,6 @@ const GameSaveContainer = ({game_saves, characters, gameSavesURL}) => {
     }
 
     const deleteGameSave = (gameSaveID) => {
-        // console.log()
         const options = {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},

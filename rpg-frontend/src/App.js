@@ -4,7 +4,7 @@ import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
 import GameSaves from './components/game_saves/GameSavesContainer.js'
 // import About from './components/About.js';
-import LogIn from './components/LogIn.js'
+import LogInForm from './components/LogInForm.js'
 import AccountForm from './components/AccountForm.js'
 
 function App() {
@@ -19,6 +19,8 @@ function App() {
 
   // Setup state via hooks
   const [user, setUser] = useState()
+  const [logInFormErrors, setLogInFormErrors] = useState([])
+  const [accountInFormErrors, setAccountInFormErrors] = useState([])
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
@@ -26,8 +28,26 @@ function App() {
   }, [])
 
   // Login user and update state
-  const logIn = (user) => {
-    setUser(user)
+  const logIn = (userEmail) => {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email: userEmail})
+    }
+    fetch(logInURL, options).then(resp => resp.json())
+    .then(response => {
+      if (response.errors) {
+          // Set error messages
+          setLogInFormErrors(response.errors)
+      } else {
+          // Clear error messages
+          setLogInFormErrors()
+          // Fake log in user via state
+          setUser(response.data)
+          // Redirect via state update
+          // return {redirect: '/new-game'}
+      }
+    })
   }
 
   // Logout user and update state
@@ -50,9 +70,9 @@ function App() {
         <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} />} />
         {/* <Route exact path="/about" component={About} /> */}
 
-        <Route exact path="/log-in" component={() => <LogIn logInURL={logInURL} logIn={logIn}/>} />
-        <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn}/>} />
-        <Route exact path="/edit-account" component={() => <AccountForm user={user} logIn={logIn} logOut={logOut} usersURL={usersURL} />} />
+        <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} formErrors={logInFormErrors}/>} />
+        <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
+        <Route exact path="/edit-account" component={() => <AccountForm usersURL={usersURL} user={user} logIn={logIn} logOut={logOut} formErrors={logInFormErrors}/>} />
       </div>
     </Router>
   );
