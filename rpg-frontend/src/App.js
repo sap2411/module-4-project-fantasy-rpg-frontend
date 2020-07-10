@@ -19,6 +19,7 @@ function App() {
 
   // Setup state via hooks
   const [user, setUser] = useState()
+  const [loaded, setLoaded] = useState()
   const [logInFormErrors, setLogInFormErrors] = useState()
   const [characters, setCharacters] = useState([])
 
@@ -64,17 +65,16 @@ function App() {
     .then(json => setCharacters(json.data))
   }
 
+  const loadGame = (file) => {
+    setLoaded(file)
+  }
+
   return (
     <Router>
       <div>
         <Navbar user={user} logOut={logOut}/>
-<<<<<<< HEAD
-        <Route exact path="/new-game" component={() => <Game characters={characters} user={user}/>} />
-        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters}/>} />
-=======
-        <Route exact path="/new-game" component={() => <Game characters={characters} />} />
-        <Route exact path="/saved-games" component={() => <GameSaves game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} refreshUser={logIn} />} />
->>>>>>> master
+        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
+        <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} game_saves={user.attributes.game_saves} characters={characters} gameSavesURL={gameSavesURL} refreshUser={logIn} />} />
         {/* <Route exact path="/about" component={About} /> */}
 
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} formErrors={logInFormErrors}/>} />
