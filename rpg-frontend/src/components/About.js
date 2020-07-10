@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const About = () => {
     return (
         <div className="jumbotron rounded-lg col-6 my-2 py-5 mt-5 bg-white mx-auto text-center">
-            <h1 className="display-4"><i className="fas fa-fist-raised"></i> Welcome to Flatiorn Fighter <i className="fas fa-fist-raised"></i> </h1>
+            <h1 className="display-4"><i className="fas fa-fist-raised"></i> Welcome to Flatiorn Fight <i className="fas fa-fist-raised"></i> </h1>
             <p className="lead">The arena is the only place in the world where a Flatiorn student can prove they really have what it takes to make it as a software engineer! Battle your way through modules against your fellow classmates to see who can take on the instructors.</p>
             <hr className="my-4"/>
             <p>Join the battle, prove yourself!</p>
