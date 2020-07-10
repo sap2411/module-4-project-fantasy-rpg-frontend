@@ -72,7 +72,8 @@ class AccountForm extends Component {
             // Redirect via state update
             this.setState({redirect: '/new-game'})
             // Fake log in user
-            this.props.logIn(response.data)
+            console.log(response.data.attributes)
+            this.props.logIn(response.data.attributes.email)
         }
     }
 
@@ -83,7 +84,7 @@ class AccountForm extends Component {
         }
 
         return (
-            <div className="card col-4 my-5 mx-auto px-0 rounded-lg text-center">
+            <div className="card col-3 my-5 mx-auto px-0 rounded-lg text-center">
                 <form className="card-body" onSubmit={event => this.handleSubmit(event)}>
                     <div className="form-group col-sm">
                         <h3>{this.props.user ? 'Edit' : 'Create'} Account</h3>
@@ -108,7 +109,7 @@ class AccountForm extends Component {
                         </div>
                     }
 
-                    <div className="col-sm">
+                    <div className="form-group col-sm">
                         <button type="submit" className="btn btn-block btn-success p">
                             {this.props.user ? <i className="fas fa-user-edit"></i> : <i className="fas fa-user-plus"></i>}
                             <span className="d-none d-sm-none d-md-inline"> {this.props.user ? 'Edit' : 'Create'} Account</span>

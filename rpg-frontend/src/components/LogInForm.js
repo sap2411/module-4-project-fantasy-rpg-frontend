@@ -5,13 +5,12 @@ class LogIn extends Component {
 
   state = {
     email: '',
-    fetchMessages: '',
     redirect: null
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    this.getUser(this.state)
+    this.props.logIn(this.state.email)
   }
 
   handleChange = event => {
@@ -20,34 +19,7 @@ class LogIn extends Component {
     })
   }
 
-  getUser = user => {
-    const options = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(user)
-    }
-    fetch(this.props.logInURL, options).then(resp => resp.json())
-    .then(this.handleFetchResponse)
-  }
-
-  handleFetchResponse = response => {
-      if (response.errors) {
-          // Set error messages
-          this.setState({fetchMessages: response.errors})
-      } else {
-          // Redirect via state update
-          this.setState({redirect: '/new-game'})
-          // Fake log in user
-          this.props.logIn(response.data)
-      }
-  }
-
   render () {
-    // Redirect function used after form submit
-    if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />
-    }
-
     return (
       <form className="card col-3 my-5 mx-auto p-3 rounded-lg" onSubmit={event => this.handleSubmit(event)}>
         <div className="form-group col-sm d-flex justify-content-center">
@@ -64,10 +36,10 @@ class LogIn extends Component {
         </div>
 
         {/* Conditionally render via && operator acting as if statement */}
-        {this.state.fetchMessages &&
+        {this.props.formErrors &&
           <div className="d-flex justify-content-center">
             <ul className="list-unstyled text-danger">
-              {this.state.fetchMessages.map((message, index) => <li key={index}>{message}</li>)}
+              {this.props.formErrors.map((message, index) => <li key={index}>{message}</li>)}
             </ul>
           </div>
         }
