@@ -32,23 +32,20 @@ class Fight extends Component {
   }
 
   playerJellyAnimation = () => {
-    console.log(this.state.aggressor)
     if (this.state.aggressor === "player"){
-      return <JellyDiv><CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} /></JellyDiv>
+      return <JellyDiv><CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} displayHealthProgress={true}/></JellyDiv>
     }
-    return <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} />
+    return <CharacterCard healthLeft={this.state.players_health} character={this.props.player} handleDivClick={this.onPlayerClick} displayHealthProgress={true}/>
   }
 
   opponentWobblyAnimation = () => {
-    console.log(this.state.aggressor)
     if (this.state.aggressor === "player"){
-      return <WobblyDiv><CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} /></WobblyDiv>
+      return <WobblyDiv><CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} displayHealthProgress={true}/></WobblyDiv>
     }
-    return <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} />
+    return <CharacterCard healthLeft={this.state.opponents_health}  character={this.props.opponent} handleDivClick={this.onOpponentClick} displayHealthProgress={true}/>
   }
 
   playerAttack = (abilityID) => {
-    console.log(this.props.opponent.health)
     // Pull selected ability
     if (this.state.players_health > 0){
     const ability = this.props.player.abilities.find(ability => ability.id === parseInt(abilityID))
