@@ -60,7 +60,7 @@ class Game extends Component{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        game_saves: {
+        game_save: {
         user_id: this.props.user.id,
         character_id: player.id,
         opponent_id: opponent.id,
@@ -74,8 +74,7 @@ class Game extends Component{
       this.setState({
         gameSave_id: json.data.id
       })
-    }
-    )
+    })
   }
 
   updateSave = (opponent, round) => {
@@ -83,7 +82,7 @@ class Game extends Component{
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        game_saves: {
+        game_save: {
         opponent_id: opponent.id,
         current_round: round
       }

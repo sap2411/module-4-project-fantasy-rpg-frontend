@@ -72,7 +72,6 @@ class AccountForm extends Component {
             // Redirect via state update
             this.setState({redirect: '/new-game'})
             // Fake log in user
-            console.log(response.data.attributes)
             this.props.logIn(response.data.attributes.email)
         }
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Game from './components/Game.js';
 import GameSaves from './components/game_saves/GameSavesContainer.js'
@@ -30,7 +30,7 @@ function App() {
   }, [])
 
   // Login user and update state
-  const logIn = (userEmail, redirectPath) => {
+  const logIn = (userEmail) => {
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -75,9 +75,9 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar user={user} loadGame={loadGame} logOut={logOut}/>
+        <Navbar user={user} loadGame={loadGame} logOut={logOut} />
         <Route exact path="/" component={About} />
-        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user} gameSavesURL={gameSavesURL}/>} />
+        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user} gameSavesURL={gameSavesURL} />} />
         <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} user={user} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
