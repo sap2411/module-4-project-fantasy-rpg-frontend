@@ -9,7 +9,8 @@ import AccountForm from './components/AccountForm.js'
 
 function App() {
   // Backend URL
-  const backendURL = 'http://localhost:3001'
+  // const backendURL = 'http://localhost:3001'
+  const backendURL = 'https://flatiron-fight-backend.herokuapp.com'
   const logInURL = backendURL + '/login'
   const usersURL = backendURL + '/users'
   const charactersURL = backendURL + '/characters'
@@ -76,7 +77,7 @@ function App() {
       <div>
         <Navbar user={user} loadGame={loadGame} logOut={logOut}/>
         <Route exact path="/" component={About} />
-        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user}/>} />
+        <Route exact path="/new-game" component={() => <Game load={loaded} characters={characters} user={user} gameSavesURL={gameSavesURL}/>} />
         <Route exact path="/saved-games" component={() => <GameSaves loadGame={loadGame} gameSavesURL={gameSavesURL} game_saves={user.attributes.game_saves} characters={characters} refreshUser={refreshUser} />} />
         <Route exact path="/log-in" component={() => <LogInForm logIn={logIn} user={user} formErrors={logInFormErrors}/>} />
         <Route exact path="/create-account" component={() => <AccountForm usersURL={usersURL} logIn={logIn} formErrors={logInFormErrors}/>} />
