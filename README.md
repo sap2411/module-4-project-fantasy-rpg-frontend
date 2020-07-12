@@ -11,35 +11,35 @@ We wanted to create a game that memorialized our cohort and the fun things we le
 ## Screenshots
 Home Page
 
-<img src="rpg-frontend/public/AppDemo/welcome.png" width="800">
+<img src="public/AppDemo/welcome.png" width="800">
 
 Create Account
 
-<img src="rpg-frontend/public/AppDemo/create.png" width="800">
+<img src="public/AppDemo/create.png" width="800">
 
 Load Saved Game
 
-<img src="rpg-frontend/public/AppDemo/saved.png" width="800">
+<img src="public/AppDemo/saved.png" width="800">
 
 New Game - Choose Character
 
-<img src="rpg-frontend/public/AppDemo/choose.png" width="800">
+<img src="public/AppDemo/choose.png" width="800">
 
 View Character Specs Before Choosing
 
-<img src="rpg-frontend/public/AppDemo/specs.png" width="800">
+<img src="public/AppDemo/specs.png" width="800">
 
 Level 4
 
-<img src="rpg-frontend/public/AppDemo/mod4.png" width="800">
+<img src="public/AppDemo/mod4.png" width="800">
 
 Level 5 - Boss Fight
 
-<img src="rpg-frontend/public/AppDemo/mod5.png" width="800">
+<img src="public/AppDemo/mod5.png" width="800">
 
 Beat The Game
 
-<img src="rpg-frontend/public/AppDemo/win.png" width="800">
+<img src="public/AppDemo/win.png" width="800">
 
 
 ## Technology Used
