@@ -20,6 +20,14 @@ const About = () => {
                     <span className="d-none d-sm-none d-md-inline"> New Game</span>
                 </button>
             </Link>
+            <p className='text-muted mt-4'>
+                Created by 
+                Steven Parson <a className="text-muted" href="https://github.com/sap2411" target="_blank"><i className="fab fa-github" /></a> <a className="text-muted" href="https://www.linkedin.com/in/steven-parsons-716654134" target="_blank"><i className="fab fa-linkedin" /></a>
+                , 
+                Gabriel de Sousa <a className="text-muted" href="https://github.com/GabedeSousa" target="_blank"><i className="fab fa-github" /></a> <a className="text-muted" href="https://www.linkedin.com/in/gabriel-fidelis-de-sousa-25b102110/" target="_blank"><i className="fab fa-linkedin" /></a>
+                , and
+                Mathew Wheatley <a className="text-muted" href="https://github.com/mathewpwheatley" target="_blank"><i className="fab fa-github" /></a> <a className="text-muted" href="https://www.linkedin.com/in/mathewpwheatley" target="_blank"><i className="fab fa-linkedin" /></a>
+            </p>
         </div>
     )
 }

@@ -11,35 +11,35 @@ We wanted to create a game that memorialized our cohort and the fun things we le
 ## Screenshots
 Home Page
 
-<img src="rpg-frontend/public/AppDemo/welcome.png" width="800">
+<img src="public/AppDemo/welcome.png" width="800">
 
 Create Account
 
-<img src="rpg-frontend/public/AppDemo/create.png" width="800">
+<img src="public/AppDemo/create.png" width="800">
 
 Load Saved Game
 
-<img src="rpg-frontend/public/AppDemo/saved.png" width="800">
+<img src="public/AppDemo/saved.png" width="800">
 
 New Game - Choose Character
 
-<img src="rpg-frontend/public/AppDemo/choose.png" width="800">
+<img src="public/AppDemo/choose.png" width="800">
 
 View Character Specs Before Choosing
 
-<img src="rpg-frontend/public/AppDemo/specs.png" width="800">
+<img src="public/AppDemo/specs.png" width="800">
 
 Level 4
 
-<img src="rpg-frontend/public/AppDemo/mod4.png" width="800">
+<img src="public/AppDemo/mod4.png" width="800">
 
 Level 5 - Boss Fight
 
-<img src="rpg-frontend/public/AppDemo/mod5.png" width="800">
+<img src="public/AppDemo/mod5.png" width="800">
 
 Beat The Game
 
-<img src="rpg-frontend/public/AppDemo/win.png" width="800">
+<img src="public/AppDemo/win.png" width="800">
 
 
 ## Technology Used
@@ -62,9 +62,11 @@ Users Can:
 
 ## Installation
 
-Clone the front-end, and run 'npm i && npm audit fix' then 'yarn start'
+Flatiron fight is hosted on Heroku therefore you can access it directly from your browser
+- https://flatiron-fight.herokuapp.com
 
-Clone back-end repo, run the following commands in order: bundle install, rails db:migrate, rails db:seed, rails s -p 3001.
+If you want to install locally, follow the below steps:
+- Clone the front-end, and run 'npm i && npm audit fix' then 'npm start'
 
 ## Contributing
 
