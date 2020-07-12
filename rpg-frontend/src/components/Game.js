@@ -3,8 +3,6 @@ import CharacterSelect from './game_route/CharacterSelectPage.js';
 import Fight from './game_route/Fight.js';
 import Victory from './game_route/Victory.js';
 
-const saveUrl = 'http://localhost:3001/game_saves'
-
 class Game extends Component{
     
   constructor(props){
@@ -25,7 +23,7 @@ class Game extends Component{
     }else{
     this.state = {
       collection: [],
-      round: 4,
+      round: 1,
       bosses: [],
       player: null,
       opponent: null,
@@ -62,23 +60,21 @@ class Game extends Component{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        game_saves: {
+        game_save: {
         user_id: this.props.user.id,
         character_id: player.id,
         opponent_id: opponent.id,
-        current_round: this.state.round 
+        current_round: this.state.round
         }
       })
     }
-    fetch(saveUrl, options)
+    fetch(this.props.gameSavesURL, options)
     .then(resp => resp.json())
     .then(json => {
-      console.log(json)
       this.setState({
         gameSave_id: json.data.id
       })
-    }
-    )
+    })
   }
 
   updateSave = (opponent, round) => {
@@ -86,13 +82,13 @@ class Game extends Component{
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        game_saves: {
+        game_save: {
         opponent_id: opponent.id,
         current_round: round
       }
     })
     }
-    fetch(saveUrl+'/'+this.state.gameSave_id, options)
+    fetch(this.props.gameSavesURL + '/' + this.state.gameSave_id, options)
     .then(resp => resp.json())
     .then(json => {
       this.setState({

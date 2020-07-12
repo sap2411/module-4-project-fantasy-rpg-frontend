@@ -5,10 +5,6 @@ import {Link} from 'react-router-dom';
 
 const GameSaveContainer = ({loadGame, game_saves, characters, gameSavesURL, refreshUser}) => {
 
-    // const loadGameSave = (gameSaveID) => {
-    //     // redirect to appropiate route
-    // }
-
     const deleteGameSave = (gameSaveID) => {
         const options = {
             method: 'DELETE',
@@ -45,6 +41,10 @@ const GameSaveContainer = ({loadGame, game_saves, characters, gameSavesURL, refr
                     <span className="d-none d-sm-none d-md-inline"> New Game</span>
                 </button>
             </Link>
+            <button className="btn btn-light btn-lg m-2" type="button" onClick={refreshUser}>
+                    <i class="fas fa-sync-alt"></i>
+                    <span className="d-none d-sm-none d-md-inline"> Refresh</span>
+            </button>
             <div className="row row-col-3 justify-content-center">
                 {gameSaveCards()}
             </div>

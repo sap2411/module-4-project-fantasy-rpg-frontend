@@ -33,7 +33,7 @@ const GameSaveCard = ({game_save, character, opponent, loadGameSave, deleteGameS
                     <i className="fas fa-trash-alt"></i>
                     <span className="d-none d-sm-none d-md-inline"> Delete Game</span>
                 </button>
-                <Link exact to="/new-game"  title="New Game">
+                <Link exact to="/new-game"  title="Load Game">
                     <button className="btn btn-success m-2 p" type="button" onClick={handleLoadClick}>
                         <i class="fas fa-gamepad"></i>
                         <span className="d-none d-sm-none d-md-inline"> Load Game</span>
