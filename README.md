@@ -62,9 +62,11 @@ Users Can:
 
 ## Installation
 
-Clone the front-end, and run 'npm i && npm audit fix' then 'yarn start'
+Flatiron fight is hosted on Heroku therefore you can access it directly from your browser
+- https://flatiron-fight.herokuapp.com
 
-Clone back-end repo, run the following commands in order: bundle install, rails db:migrate, rails db:seed, rails s -p 3001.
+If you want to install locally, follow the below steps:
+- Clone the front-end, and run 'npm i && npm audit fix' then 'npm start'
 
 ## Contributing
 
